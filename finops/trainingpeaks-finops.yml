@@ -1,0 +1,111 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: TrainingPeaks
+providerId: trainingpeaks
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Fitness
+- Endurance Training
+- Coaching
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of TrainingPeaks spend. Two cost surfaces exist. (1) Partners API
+  access has no metered API bill and no public price - it is a partner program
+  with negotiated terms, so for most integrators the direct API "cost" is
+  engineering and the value of the partnership rather than per-call charges.
+  (2) The consumer subscriptions (athlete Premium, coach Coach Edition tiers, and
+  per-athlete Premium upgrades) are the real recurring spend, and they also gate
+  what data an integration can retrieve - so subscription tier is both a cost and
+  a data-access lever. Because the API is not usage-metered, cost optimization
+  centers on subscription mix (how many athletes need Premium) rather than call
+  volume.
+notes: >-
+  No published usage-based API pricing to reconcile; API commercial terms are
+  partner-negotiated. Consumer subscription rates should be verified on the
+  TrainingPeaks pricing pages. Premium-vs-Basic status determines which
+  endpoints/fields return data, so under-provisioning Premium reduces both spend
+  and available data.
+sources:
+- https://github.com/TrainingPeaks/PartnersAPI/wiki/Frequently-Asked-Questions
+- https://www.trainingpeaks.com/pricing/for-athletes/
+- https://www.trainingpeaks.com/pricing/for-coaches/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: TrainingPeaks
+serviceCategory: Fitness and Endurance Training
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: TrainingPeaks
+  ServiceCategory: Fitness and Endurance Training
+  ProviderName: TrainingPeaks
+  PublisherName: TrainingPeaks
+  InvoiceIssuerName: TrainingPeaks
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: athlete_premium_subscription
+  description: Athlete Premium subscription, billed monthly or annually. Unlocks premium API data.
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - account
+  - billingCycle
+- name: coach_subscription
+  description: Coach Edition (Basic or Unlimited) subscription, billed monthly.
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - account
+  - tier
+- name: coach_premium_athlete
+  description: Per-athlete Premium upgrade purchased by a coach, with volume discounts at scale.
+  unit: athletes
+  aggregation: sum
+  dimensions:
+  - account
+  - athlete
+- name: partner_api_access
+  description: Partners API access. No metered per-call charge; commercial terms negotiated per partner.
+  unit: contract
+  aggregation: sum
+  dimensions:
+  - partner
+principles:
+- name: Visibility
+  description: >-
+    Track subscription counts by type (athlete Premium, coach tiers, per-athlete
+    upgrades); the API is not metered, so there is no per-call spend to attribute.
+- name: Allocation
+  description: >-
+    Map coach per-athlete Premium upgrades to the client/team they serve so
+    subscription spend aligns to who consumes the premium data.
+- name: Optimization
+  description: >-
+    Provision Premium only for athletes whose premium data (TSS/analytics,
+    details, mean-max) your integration actually needs; use webhooks and
+    changed-since sync to keep engineering cost down instead of scanning.
+- name: Accountability
+  description: >-
+    Review Premium athlete counts and coach tier against actual data usage each
+    billing cycle; renegotiate partner terms as user volume grows.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

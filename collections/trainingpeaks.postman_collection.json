@@ -1,0 +1,386 @@
+{
+  "info": {
+    "name": "TrainingPeaks Partners API",
+    "description": "The TrainingPeaks Partners API (Public API) - read and write athlete profiles, planned and completed workouts, structured workout files, wellness metrics, nutrition, events, routes, coach data, activity file uploads, and workout webhooks on behalf of a user. JSON over HTTPS, secured with OAuth 2.0. Base URL: https://api.trainingpeaks.com (production) or https://api.sandbox.trainingpeaks.com (sandbox). Access is partner-gated - apply at https://api.trainingpeaks.com/request-access; not available for personal use. Endpoints and scopes are confirmed from the PartnersAPI wiki; request/response bodies are modeled.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{accessToken}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.trainingpeaks.com", "type": "string" },
+    { "key": "accessToken", "value": "", "type": "string" },
+    { "key": "athleteId", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Info",
+      "item": [
+        {
+          "name": "Get API version",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v1/info/version", "host": ["{{baseUrl}}"], "path": ["v1", "info", "version"] },
+            "description": "Returns API build and version. No OAuth scope required."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Athlete",
+      "item": [
+        {
+          "name": "Get athlete profile",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v1/athlete/profile", "host": ["{{baseUrl}}"], "path": ["v1", "athlete", "profile"] },
+            "description": "Scope athlete:profile. The authenticated athlete's profile, including premium/basic status."
+          }
+        },
+        {
+          "name": "Get athlete zones (deprecated)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v1/athlete/zones", "host": ["{{baseUrl}}"], "path": ["v1", "athlete", "zones"] },
+            "description": "Deprecated. Scope athlete:profile."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Coach",
+      "item": [
+        {
+          "name": "Get coach profile",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v1/coach/profile", "host": ["{{baseUrl}}"], "path": ["v1", "coach", "profile"] },
+            "description": "Scope coach:athletes."
+          }
+        },
+        {
+          "name": "List coach athletes",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v1/coach/athletes", "host": ["{{baseUrl}}"], "path": ["v1", "coach", "athletes"] },
+            "description": "Scope coach:athletes. Athletes attached to the authenticated coach."
+          }
+        },
+        {
+          "name": "List assistants",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v1/coach/assistants", "host": ["{{baseUrl}}"], "path": ["v1", "coach", "assistants"] },
+            "description": "Scope coach:athletes."
+          }
+        },
+        {
+          "name": "List assistant athletes",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v1/coach/assistants/:assistantId/athletes", "host": ["{{baseUrl}}"], "path": ["v1", "coach", "assistants", ":assistantId", "athletes"], "variable": [{ "key": "assistantId", "value": "" }] },
+            "description": "Scope coach:athletes."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Workouts",
+      "item": [
+        {
+          "name": "Get workouts by date range",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v2/workouts/:startDate/:endDate?includeDescription=true", "host": ["{{baseUrl}}"], "path": ["v2", "workouts", ":startDate", ":endDate"], "query": [{ "key": "includeDescription", "value": "true" }], "variable": [{ "key": "startDate", "value": "2026-07-01" }, { "key": "endDate", "value": "2026-07-07" }] },
+            "description": "Scope workouts:read. Planned and completed workouts for the authenticated athlete."
+          }
+        },
+        {
+          "name": "Get athlete workouts by date range",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v2/workouts/:athleteId/:startDate/:endDate", "host": ["{{baseUrl}}"], "path": ["v2", "workouts", ":athleteId", ":startDate", ":endDate"], "variable": [{ "key": "athleteId", "value": "{{athleteId}}" }, { "key": "startDate", "value": "2026-07-01" }, { "key": "endDate", "value": "2026-07-07" }] },
+            "description": "Scope workouts:read. Coach access to an athlete's workouts."
+          }
+        },
+        {
+          "name": "Get changed workouts",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v2/workouts/changed?date=2026-07-01T00:00:00Z", "host": ["{{baseUrl}}"], "path": ["v2", "workouts", "changed"], "query": [{ "key": "date", "value": "2026-07-01T00:00:00Z" }] },
+            "description": "Scope workouts:read. Incremental sync of changed workouts."
+          }
+        },
+        {
+          "name": "Get Workout of the Day",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v2/workouts/wod/:date", "host": ["{{baseUrl}}"], "path": ["v2", "workouts", "wod", ":date"], "variable": [{ "key": "date", "value": "2026-07-03" }] },
+            "description": "Scope workouts:wod."
+          }
+        },
+        {
+          "name": "Get structured workout file",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v2/workouts/wod/file/:workoutId/?format=zwo", "host": ["{{baseUrl}}"], "path": ["v2", "workouts", "wod", "file", ":workoutId", ""], "query": [{ "key": "format", "value": "zwo" }], "variable": [{ "key": "workoutId", "value": "" }] },
+            "description": "Scope workouts:wod. Formats: fit, erg, mrc, zwo, json."
+          }
+        },
+        {
+          "name": "Create planned workout",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Accept", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"AthleteId\": {{athleteId}},\n  \"Title\": \"Threshold Intervals\",\n  \"WorkoutType\": \"Bike\",\n  \"WorkoutDay\": \"2026-07-05T00:00:00Z\",\n  \"TotalTimePlanned\": 1.5\n}" },
+            "url": { "raw": "{{baseUrl}}/v2/workouts/plan", "host": ["{{baseUrl}}"], "path": ["v2", "workouts", "plan"] },
+            "description": "Scope workouts:plan. Coach or premium athlete."
+          }
+        },
+        {
+          "name": "Update planned workout",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Accept", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"Title\": \"Threshold Intervals (updated)\"\n}" },
+            "url": { "raw": "{{baseUrl}}/v2/workouts/plan/:id", "host": ["{{baseUrl}}"], "path": ["v2", "workouts", "plan", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Scope workouts:plan."
+          }
+        },
+        {
+          "name": "Get workout by id",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v2/workouts/id/:id", "host": ["{{baseUrl}}"], "path": ["v2", "workouts", "id", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Scope workouts:read."
+          }
+        },
+        {
+          "name": "Delete workout by id",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v2/workouts/id/:id", "host": ["{{baseUrl}}"], "path": ["v2", "workouts", "id", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Scope workouts:plan."
+          }
+        },
+        {
+          "name": "Get workout mean-max data (premium)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v2/workouts/id/:id/meanmaxes", "host": ["{{baseUrl}}"], "path": ["v2", "workouts", "id", ":id", "meanmaxes"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Scope workouts:read. Premium athlete required."
+          }
+        },
+        {
+          "name": "Get workout time in zones (premium)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v2/workouts/id/:id/timeinzones", "host": ["{{baseUrl}}"], "path": ["v2", "workouts", "id", ":id", "timeinzones"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Scope workouts:read. Premium athlete required."
+          }
+        },
+        {
+          "name": "Get workout details (premium)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v2/workouts/id/:id/details", "host": ["{{baseUrl}}"], "path": ["v2", "workouts", "id", ":id", "details"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Scope workouts:details. Premium athlete, completed workout, uploaded file required."
+          }
+        },
+        {
+          "name": "Create workout comment",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Accept", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"Comment\": \"Great session, nail the recovery.\"\n}" },
+            "url": { "raw": "{{baseUrl}}/v2/workouts/:athleteId/id/:workoutId/comment", "host": ["{{baseUrl}}"], "path": ["v2", "workouts", ":athleteId", "id", ":workoutId", "comment"], "variable": [{ "key": "athleteId", "value": "{{athleteId}}" }, { "key": "workoutId", "value": "" }] },
+            "description": "Scope workouts:details. Premium athlete required."
+          }
+        },
+        {
+          "name": "Get strength workouts",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v2/athletes/:athleteId/strength-workouts", "host": ["{{baseUrl}}"], "path": ["v2", "athletes", ":athleteId", "strength-workouts"], "variable": [{ "key": "athleteId", "value": "{{athleteId}}" }] },
+            "description": "Scope workouts:read."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Metrics",
+      "item": [
+        {
+          "name": "Get metrics by date range (premium)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v2/metrics/:startDate/:endDate", "host": ["{{baseUrl}}"], "path": ["v2", "metrics", ":startDate", ":endDate"], "variable": [{ "key": "startDate", "value": "2026-07-01" }, { "key": "endDate", "value": "2026-07-07" }] },
+            "description": "Scope metrics:read. Premium athlete required."
+          }
+        },
+        {
+          "name": "Create metric",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Accept", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"AthleteId\": {{athleteId}},\n  \"Timestamp\": \"2026-07-03T06:30:00Z\",\n  \"WeightInKilograms\": 72.5,\n  \"RestingHeartRate\": 48\n}" },
+            "url": { "raw": "{{baseUrl}}/v2/metrics", "host": ["{{baseUrl}}"], "path": ["v2", "metrics"] },
+            "description": "Scope metrics:write."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Nutrition",
+      "item": [
+        {
+          "name": "Get athlete nutrition",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v1/athletes/:athleteId/nutrition?startDate=2026-07-01&endDate=2026-07-07", "host": ["{{baseUrl}}"], "path": ["v1", "athletes", ":athleteId", "nutrition"], "query": [{ "key": "startDate", "value": "2026-07-01" }, { "key": "endDate", "value": "2026-07-07" }], "variable": [{ "key": "athleteId", "value": "{{athleteId}}" }] },
+            "description": "Scope nutrition:read. Date-range reads require a premium athlete."
+          }
+        },
+        {
+          "name": "Create athlete nutrition",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Accept", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"Date\": \"2026-07-03\",\n  \"Calories\": 2600,\n  \"CarbohydratesInGrams\": 380\n}" },
+            "url": { "raw": "{{baseUrl}}/v1/athletes/:athleteId/nutrition", "host": ["{{baseUrl}}"], "path": ["v1", "athletes", ":athleteId", "nutrition"], "variable": [{ "key": "athleteId", "value": "{{athleteId}}" }] },
+            "description": "Scope nutrition:write."
+          }
+        }
+      ]
+    },
+    {
+      "name": "File",
+      "item": [
+        {
+          "name": "Upload activity file (async)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Accept", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"AthleteId\": {{athleteId}},\n  \"FileName\": \"ride.fit\",\n  \"Data\": \"<base64-encoded FIT/TCX/PWX>\"\n}" },
+            "url": { "raw": "{{baseUrl}}/v3/file", "host": ["{{baseUrl}}"], "path": ["v3", "file"] },
+            "description": "Scope file:write. Supported types: .FIT, .TCX, .PWX. Processed asynchronously."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Events",
+      "item": [
+        {
+          "name": "Get next event",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v2/events/next", "host": ["{{baseUrl}}"], "path": ["v2", "events", "next"] },
+            "description": "Scope events:read."
+          }
+        },
+        {
+          "name": "Create event",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Accept", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"Name\": \"State Championship Road Race\",\n  \"Date\": \"2026-09-12\",\n  \"Priority\": \"A\"\n}" },
+            "url": { "raw": "{{baseUrl}}/v2/events", "host": ["{{baseUrl}}"], "path": ["v2", "events"] },
+            "description": "Scope events:write."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Routes",
+      "item": [
+        {
+          "name": "Get athlete routes",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v2/athletes/:athleteId/routes", "host": ["{{baseUrl}}"], "path": ["v2", "athletes", ":athleteId", "routes"], "variable": [{ "key": "athleteId", "value": "{{athleteId}}" }] },
+            "description": "Scope routes:read."
+          }
+        },
+        {
+          "name": "Create athlete route",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Accept", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"Name\": \"Canyon Loop\",\n  \"Distance\": 42000,\n  \"ElevationGain\": 650\n}" },
+            "url": { "raw": "{{baseUrl}}/v2/athlete/:athleteId/routes", "host": ["{{baseUrl}}"], "path": ["v2", "athlete", ":athleteId", "routes"], "variable": [{ "key": "athleteId", "value": "{{athleteId}}" }] },
+            "description": "Scope routes:write."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Webhooks (Early Access)",
+      "item": [
+        {
+          "name": "List webhook subscriptions",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v1/webhook/subscriptions", "host": ["{{baseUrl}}"], "path": ["v1", "webhook", "subscriptions"] },
+            "description": "Scope webhook:read-subscriptions."
+          }
+        },
+        {
+          "name": "Create webhook subscription",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Accept", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"AthleteId\": 54321,\n  \"EventType\": \"workout-created\",\n  \"WebhookUrl\": \"https://api.mycompany.com/callback\"\n}" },
+            "url": { "raw": "{{baseUrl}}/v1/webhook/subscriptions", "host": ["{{baseUrl}}"], "path": ["v1", "webhook", "subscriptions"] },
+            "description": "Scope webhook:write-subscriptions. EventType: workout-created, workout-updated, workout-deleted."
+          }
+        },
+        {
+          "name": "Update webhook subscription",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Accept", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"AthleteId\": 54321,\n  \"EventType\": \"workout-updated\",\n  \"WebhookUrl\": \"https://api.mycompany.com/callback\"\n}" },
+            "url": { "raw": "{{baseUrl}}/v1/webhook/subscriptions/:subscriptionId", "host": ["{{baseUrl}}"], "path": ["v1", "webhook", "subscriptions", ":subscriptionId"], "variable": [{ "key": "subscriptionId", "value": "" }] },
+            "description": "Scope webhook:write-subscriptions."
+          }
+        },
+        {
+          "name": "Delete webhook subscription",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/v1/webhook/subscriptions/:subscriptionId", "host": ["{{baseUrl}}"], "path": ["v1", "webhook", "subscriptions", ":subscriptionId"], "variable": [{ "key": "subscriptionId", "value": "" }] },
+            "description": "Scope webhook:write-subscriptions."
+          }
+        }
+      ]
+    }
+  ]
+}

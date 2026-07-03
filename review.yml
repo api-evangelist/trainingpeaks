@@ -1,0 +1,162 @@
+aid: trainingpeaks
+name: TrainingPeaks
+review:
+  question: Does TrainingPeaks expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-03'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  accessModel: partner-gated
+  accessNote: |
+    The TrainingPeaks Partners API (Public API) is partner-gated. Developers must
+    apply for credentials at https://api.trainingpeaks.com/request-access and are
+    individually evaluated; TrainingPeaks states it is not accepting API requests
+    for personal use. Despite the gated access, the full API surface (endpoints,
+    HTTP methods, OAuth scopes, and objects) is publicly documented on the
+    PartnersAPI GitHub wiki, from which this entry was authored. Endpoint paths and
+    methods are CONFIRMED against that wiki; request/response schemas are MODELED
+    from the wiki object pages because live reference responses require partner
+    credentials and an authorized user.
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. TrainingPeaks' own public API is
+    request/response JSON REST over HTTPS. Its only push mechanism is outbound
+    webhooks (Early Access) - TrainingPeaks POSTs a JSON notification to a
+    partner-registered WebhookUrl on workout-created / workout-updated /
+    workout-deleted events. That is server-to-endpoint HTTP, not a WebSocket or
+    SSE stream on TrainingPeaks' own API, so there is no server-push transport to
+    model.
+findings:
+  summary: |
+    TrainingPeaks does not publish a documented public WebSocket API. The
+    TrainingPeaks Partners API is a JSON over HTTPS REST API secured with OAuth
+    2.0 (authorization_code and refresh_token grants; short-lived access tokens).
+    Production base is https://api.trainingpeaks.com and sandbox is
+    https://api.sandbox.trainingpeaks.com; OAuth is served from
+    oauth.trainingpeaks.com (and oauth.sandbox.trainingpeaks.com). Real-time
+    delivery is via outbound webhook subscriptions (Early Access), which are HTTP
+    POST callbacks to a partner URL - not a WebSocket (ws:// or wss://) or SSE
+    endpoint. No bidirectional or streaming socket transport is documented
+    anywhere in the PartnersAPI wiki as of the review date.
+  accessModel: |
+    Partner-gated. Application required via api.trainingpeaks.com/request-access;
+    not available for personal use. Each application is granted a fixed set of
+    OAuth scopes; requesting scopes beyond the grant makes the token exchange
+    fail. Access to several endpoints and workout fields is further gated by
+    whether the connected athlete is Premium or Basic.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.trainingpeaks.com
+      documented: true
+      note: JSON REST Partners API. Sandbox base is https://api.sandbox.trainingpeaks.com.
+    - protocol: OAuth2
+      scheme: https
+      baseURL: https://oauth.trainingpeaks.com
+      documented: true
+      note: Authorize + token + deauthorize endpoints. Sandbox at oauth.sandbox.trainingpeaks.com.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: >-
+        Early Access outbound webhooks. TrainingPeaks POSTs an event notification to
+        a subscribed WebhookUrl on workout-created/updated/deleted. HTTP callback,
+        not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the TrainingPeaks PartnersAPI wiki as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://api.trainingpeaks.com/v1/info/version
+    - GET    https://api.trainingpeaks.com/v1/athlete/profile
+    - GET    https://api.trainingpeaks.com/v1/athlete/zones
+    - GET    https://api.trainingpeaks.com/v1/athlete/zones/{zoneType}
+    - GET    https://api.trainingpeaks.com/v1/coach/profile
+    - GET    https://api.trainingpeaks.com/v1/coach/athletes
+    - GET    https://api.trainingpeaks.com/v1/coach/athletes/zones
+    - GET    https://api.trainingpeaks.com/v1/coach/athletes/zones/{zoneType}
+    - GET    https://api.trainingpeaks.com/v1/coach/assistants
+    - GET    https://api.trainingpeaks.com/v1/coach/assistants/{assistantId}
+    - GET    https://api.trainingpeaks.com/v1/coach/assistants/{assistantId}/athletes
+    - POST   https://api.trainingpeaks.com/v3/file
+    - GET    https://api.trainingpeaks.com/v2/metrics/{metricId}
+    - GET    https://api.trainingpeaks.com/v2/metrics/{startDate}/{endDate}
+    - GET    https://api.trainingpeaks.com/v2/metrics/{athleteId}/{startDate}/{endDate}
+    - POST   https://api.trainingpeaks.com/v2/metrics
+    - GET    https://api.trainingpeaks.com/v1/athletes/{athleteId}/nutrition
+    - POST   https://api.trainingpeaks.com/v1/athletes/{athleteId}/nutrition
+    - PUT    https://api.trainingpeaks.com/v1/athletes/{athleteId}/nutrition/{nutritionId}
+    - DELETE https://api.trainingpeaks.com/v1/athletes/{athleteId}/nutrition/{nutritionId}
+    - GET    https://api.trainingpeaks.com/v2/workouts/{startDate}/{endDate}
+    - GET    https://api.trainingpeaks.com/v2/workouts/{athleteId}/{startDate}/{endDate}
+    - GET    https://api.trainingpeaks.com/v2/workouts/changed?date={date}
+    - GET    https://api.trainingpeaks.com/v2/workouts/{athleteId}/changed?date={date}
+    - GET    https://api.trainingpeaks.com/v2/workouts/wod/{date}
+    - GET    https://api.trainingpeaks.com/v2/workouts/wod/file/{workoutId}/?format={format}
+    - POST   https://api.trainingpeaks.com/v2/workouts/plan
+    - PUT    https://api.trainingpeaks.com/v2/workouts/plan/{id}
+    - GET    https://api.trainingpeaks.com/v2/workouts/id/{id}
+    - DELETE https://api.trainingpeaks.com/v2/workouts/id/{id}
+    - GET    https://api.trainingpeaks.com/v2/workouts/{athleteId}/id/{id}
+    - DELETE https://api.trainingpeaks.com/v2/workouts/{athleteId}/id/{id}
+    - GET    https://api.trainingpeaks.com/v2/workouts/id/{id}/meanmaxes
+    - GET    https://api.trainingpeaks.com/v2/workouts/{athleteId}/id/{id}/meanmaxes
+    - GET    https://api.trainingpeaks.com/v2/workouts/id/{id}/timeinzones
+    - GET    https://api.trainingpeaks.com/v2/workouts/{athleteId}/id/{id}/timeinzones
+    - GET    https://api.trainingpeaks.com/v2/workouts/id/{id}/details
+    - GET    https://api.trainingpeaks.com/v2/workouts/{athleteId}/id/{id}/details
+    - POST   https://api.trainingpeaks.com/v2/workouts/{athleteId}/id/{workoutId}/comment
+    - GET    https://api.trainingpeaks.com/v2/athletes/{athleteId}/strength-workouts
+    - GET    https://api.trainingpeaks.com/v2/events/next
+    - GET    https://api.trainingpeaks.com/v2/events/{date}
+    - POST   https://api.trainingpeaks.com/v2/events
+    - GET    https://api.trainingpeaks.com/v2/athletes/{athleteId}/routes
+    - POST   https://api.trainingpeaks.com/v2/athlete/{athleteId}/routes
+    - GET    https://api.trainingpeaks.com/v1/webhook/subscriptions
+    - POST   https://api.trainingpeaks.com/v1/webhook/subscriptions
+    - PUT    https://api.trainingpeaks.com/v1/webhook/subscriptions/{subscriptionId}
+    - DELETE https://api.trainingpeaks.com/v1/webhook/subscriptions/{subscriptionId}
+  endpointsModeled: |
+    All request/response schemas in openapi/trainingpeaks-openapi.yml (AthleteProfile,
+    Workout, Metric, Nutrition, Event, Route, StrengthWorkout, FileUpload, Zone) are
+    MODELED from the wiki object pages and examples, not captured from live responses,
+    because live reference responses require partner credentials plus an authorized
+    Premium/Basic user. The WebhookSubscription request/response is CONFIRMED from the
+    Webhook-Create-Subscription wiki page example.
+sources:
+  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki
+    type: Documentation
+    note: Partners API wiki home; overview, HTTPS/JSON, sandbox + production base URLs.
+  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/API-Endpoints
+    type: APIReference
+    note: Canonical list of all endpoints, HTTP methods, and OAuth scopes. All REST; no WebSocket.
+  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/OAuth
+    type: Documentation
+    note: OAuth 2.0 authorize/token/deauthorize URLs, authorization_code + refresh_token grants, short-lived tokens.
+  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Create-Subscription
+    type: APIReference
+    note: Webhook subscription CRUD; outbound HTTP POST callbacks on workout events. Not WebSocket.
+  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Premium-vs-Basic-Athlete
+    type: Documentation
+    note: Premium-only endpoints and workout fields; basic athletes get 403 / null.
+  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Frequently-Asked-Questions
+    type: Documentation
+    note: Access is application-only (not for personal use); no preset hard rate limit.
+  - url: https://help.trainingpeaks.com/hc/en-us/articles/234441128-TrainingPeaks-API
+    type: Documentation
+    note: Help Center API overview and request-access process.
+  - url: https://github.com/TrainingPeaks/tp-public-api-auth
+    type: SourceCode
+    note: Official Python OAuth 2.0 example for the TrainingPeaks Public API.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. TrainingPeaks' own public API is
+    request/response JSON REST over HTTPS with OAuth 2.0, plus Early Access
+    outbound webhooks (HTTP POST callbacks). No AsyncAPI document was created
+    because there is no server-push transport (WebSocket or SSE) on TrainingPeaks'
+    own API to model - webhooks are server-to-endpoint HTTP callbacks, not a
+    persistent socket the client connects to.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

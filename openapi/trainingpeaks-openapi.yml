@@ -1,0 +1,1101 @@
+openapi: 3.0.3
+info:
+  title: TrainingPeaks Partners API
+  version: '2.0'
+  description: >-
+    The TrainingPeaks Partners API (Public API) lets approved third-party
+    applications read and write TrainingPeaks data on behalf of a user - athlete
+    profiles, planned and completed workouts, structured workout files, wellness
+    metrics, nutrition, events, routes, coach relationships, activity file
+    uploads, and workout webhooks. It is a JSON over HTTPS REST API secured with
+    OAuth 2.0 (authorization_code and refresh_token grants).
+
+
+    ACCESS MODEL: Access is partner-gated. Applications must request credentials
+    at https://api.trainingpeaks.com/request-access and are individually
+    evaluated; TrainingPeaks states it is not accepting API requests for personal
+    use. Each application is granted a fixed set of OAuth scopes; requesting more
+    scopes than granted causes the token exchange to fail. The full API surface is
+    publicly documented at https://github.com/TrainingPeaks/PartnersAPI/wiki, from
+    which this specification was authored.
+
+
+    ENDPOINT PROVENANCE: All paths, HTTP methods, and OAuth scopes in this
+    document are CONFIRMED against the public PartnersAPI wiki API-Endpoints page.
+    Request and response SCHEMAS are MODELED from the wiki object pages and
+    examples, because the live reference responses require partner credentials and
+    an authorized user; treat the property lists as representative rather than
+    exhaustive (marked with x-endpoints-modeled below).
+  contact:
+    name: TrainingPeaks API Partnerships Team
+    url: https://api.trainingpeaks.com/request-access
+  x-access-model: partner-gated (application required; not available for personal use)
+  x-endpoints-confirmed: true
+  x-schemas-modeled: true
+  x-documentation: https://github.com/TrainingPeaks/PartnersAPI/wiki
+servers:
+- url: https://api.trainingpeaks.com
+  description: Production
+- url: https://api.sandbox.trainingpeaks.com
+  description: Sandbox (UAT; database refreshed weekly from production)
+security:
+- OAuth2: []
+tags:
+- name: Info
+  description: Service information and version.
+- name: Athlete
+  description: Authenticated athlete profile and (deprecated) training zones.
+- name: Coach
+  description: Coach profile, athletes, and assistant management.
+- name: Workouts
+  description: Planned and completed workouts, changes, details, and analytics.
+- name: Metrics
+  description: Athlete wellness and body metrics.
+- name: Nutrition
+  description: Athlete nutrition log entries.
+- name: File
+  description: Asynchronous activity file uploads.
+- name: Events
+  description: Athlete events.
+- name: Routes
+  description: Athlete GPS routes.
+- name: Webhooks
+  description: Workout webhook subscriptions (Early Access).
+paths:
+  /v1/info/version:
+    get:
+      tags: [Info]
+      summary: Get API version
+      description: Returns the API build and version. No OAuth scope required.
+      operationId: getVersion
+      security: []
+      responses:
+        '200':
+          description: Version information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Version'
+  /v1/athlete/profile:
+    get:
+      tags: [Athlete]
+      summary: Get athlete profile
+      description: Retrieve the authenticated athlete's profile. Scope athlete:profile.
+      operationId: getAthleteProfile
+      responses:
+        '200':
+          description: The athlete profile.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AthleteProfile'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v1/athlete/zones:
+    get:
+      tags: [Athlete]
+      summary: Get athlete zones (deprecated)
+      description: Deprecated. Retrieve the athlete's training zones. Scope athlete:profile.
+      operationId: getAthleteZones
+      deprecated: true
+      responses:
+        '200':
+          description: The athlete's training zones.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Zone' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v1/athlete/zones/{zoneType}:
+    get:
+      tags: [Athlete]
+      summary: Get athlete zones by type (deprecated)
+      description: Deprecated. Retrieve the athlete's zones for a given zone type. Scope athlete:profile.
+      operationId: getAthleteZonesByType
+      deprecated: true
+      parameters:
+      - name: zoneType
+        in: path
+        required: true
+        schema: { type: string, enum: [heartrate, power, speed] }
+      responses:
+        '200':
+          description: The athlete's zones for the type.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Zone' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v1/coach/profile:
+    get:
+      tags: [Coach]
+      summary: Get coach profile
+      description: Retrieve the authenticated coach's profile. Scope coach:athletes.
+      operationId: getCoachProfile
+      responses:
+        '200':
+          description: The coach profile.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CoachProfile' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v1/coach/athletes:
+    get:
+      tags: [Coach]
+      summary: List coach athletes
+      description: List the athletes attached to the authenticated coach. Scope coach:athletes.
+      operationId: getCoachAthletes
+      responses:
+        '200':
+          description: The coach's athletes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/AthleteProfile' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v1/coach/athletes/zones:
+    get:
+      tags: [Coach]
+      summary: Get coach athletes zones (deprecated)
+      description: Deprecated. Zones for the coach's athletes. Scope coach:athletes.
+      operationId: getCoachAthleteZones
+      deprecated: true
+      responses:
+        '200':
+          description: Zones for the coach's athletes.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v1/coach/athletes/zones/{zoneType}:
+    get:
+      tags: [Coach]
+      summary: Get coach athletes zones by type (deprecated)
+      description: Deprecated. Zones by type for the coach's athletes. Scope coach:athletes.
+      operationId: getCoachAthleteZonesByType
+      deprecated: true
+      parameters:
+      - name: zoneType
+        in: path
+        required: true
+        schema: { type: string, enum: [heartrate, power, speed] }
+      responses:
+        '200':
+          description: Zones for the coach's athletes for the type.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v1/coach/assistants:
+    get:
+      tags: [Coach]
+      summary: List assistants
+      description: List assistant coaches for the authenticated coach. Scope coach:athletes.
+      operationId: getCoachAssistants
+      responses:
+        '200':
+          description: The coach's assistants.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v1/coach/assistants/{assistantId}:
+    get:
+      tags: [Coach]
+      summary: Get assistant
+      description: Retrieve a single assistant coach. Scope coach:athletes.
+      operationId: getCoachAssistant
+      parameters:
+      - name: assistantId
+        in: path
+        required: true
+        schema: { type: integer, format: int64 }
+      responses:
+        '200':
+          description: The assistant coach.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v1/coach/assistants/{assistantId}/athletes:
+    get:
+      tags: [Coach]
+      summary: List assistant athletes
+      description: List the athletes attached to an assistant coach. Scope coach:athletes.
+      operationId: getCoachAssistantAthletes
+      parameters:
+      - name: assistantId
+        in: path
+        required: true
+        schema: { type: integer, format: int64 }
+      responses:
+        '200':
+          description: The assistant's athletes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/AthleteProfile' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v3/file:
+    post:
+      tags: [File]
+      summary: Upload activity file (asynchronous)
+      description: >-
+        Upload a completed device/activity file to an athlete's account. Processed
+        asynchronously (synchronous upload deprecated 6/2023). Supported types are
+        .FIT, .TCX, and .PWX. Scope file:write.
+      operationId: uploadFile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/FileUpload' }
+      responses:
+        '202':
+          description: Accepted for asynchronous processing.
+        '415':
+          description: Unsupported media type. Supported file types are .FIT, .TCX, and .PWX.
+        '422':
+          description: The uploaded file has already been uploaded to the athlete's account.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/metrics/{metricId}:
+    get:
+      tags: [Metrics]
+      summary: Get metric by id
+      description: Retrieve a single metric entry by id. Scope metrics:read.
+      operationId: getMetric
+      parameters:
+      - name: metricId
+        in: path
+        required: true
+        schema: { type: string }
+      responses:
+        '200':
+          description: The metric entry.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Metric' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/metrics/{startDate}/{endDate}:
+    get:
+      tags: [Metrics]
+      summary: Get metrics by date range
+      description: >-
+        Retrieve the authenticated athlete's metrics for a date range. Premium
+        athlete required (403 for basic). Scope metrics:read.
+      operationId: getMetricsByDateRange
+      parameters:
+      - { name: startDate, in: path, required: true, schema: { type: string, format: date } }
+      - { name: endDate, in: path, required: true, schema: { type: string, format: date } }
+      responses:
+        '200':
+          description: Metrics in the date range.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Metric' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/metrics/{athleteId}/{startDate}/{endDate}:
+    get:
+      tags: [Metrics]
+      summary: Get athlete metrics by date range
+      description: >-
+        Coach access to an athlete's metrics for a date range. Premium athlete
+        required (403 for basic). Scope metrics:read.
+      operationId: getAthleteMetrics
+      parameters:
+      - { name: athleteId, in: path, required: true, schema: { type: integer, format: int64 } }
+      - { name: startDate, in: path, required: true, schema: { type: string, format: date } }
+      - { name: endDate, in: path, required: true, schema: { type: string, format: date } }
+      responses:
+        '200':
+          description: Athlete metrics in the date range.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Metric' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/metrics:
+    post:
+      tags: [Metrics]
+      summary: Create metric
+      description: Create a new athlete metric entry. Scope metrics:write.
+      operationId: createMetric
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Metric' }
+      responses:
+        '201':
+          description: The created metric.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Metric' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v1/athletes/{athleteId}/nutrition:
+    get:
+      tags: [Nutrition]
+      summary: Get athlete nutrition
+      description: >-
+        Retrieve an athlete's nutrition log entries. Date-range reads require a
+        premium athlete (403 for basic). Scope nutrition:read.
+      operationId: getNutrition
+      parameters:
+      - { name: athleteId, in: path, required: true, schema: { type: integer, format: int64 } }
+      - { name: startDate, in: query, required: false, schema: { type: string, format: date } }
+      - { name: endDate, in: query, required: false, schema: { type: string, format: date } }
+      - { name: pageSize, in: query, required: false, schema: { type: integer } }
+      - { name: page, in: query, required: false, schema: { type: integer } }
+      responses:
+        '200':
+          description: Nutrition entries.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Nutrition' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    post:
+      tags: [Nutrition]
+      summary: Create athlete nutrition
+      description: Create a nutrition log entry for an athlete. Scope nutrition:write.
+      operationId: createNutrition
+      parameters:
+      - { name: athleteId, in: path, required: true, schema: { type: integer, format: int64 } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Nutrition' }
+      responses:
+        '201':
+          description: The created nutrition entry.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Nutrition' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v1/athletes/{athleteId}/nutrition/{nutritionId}:
+    put:
+      tags: [Nutrition]
+      summary: Update athlete nutrition
+      description: Update a nutrition log entry. Scope nutrition:write.
+      operationId: updateNutrition
+      parameters:
+      - { name: athleteId, in: path, required: true, schema: { type: integer, format: int64 } }
+      - { name: nutritionId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Nutrition' }
+      responses:
+        '200':
+          description: The updated nutrition entry.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Nutrition' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    delete:
+      tags: [Nutrition]
+      summary: Delete athlete nutrition
+      description: Delete a nutrition log entry. Scope nutrition:write.
+      operationId: deleteNutrition
+      parameters:
+      - { name: athleteId, in: path, required: true, schema: { type: integer, format: int64 } }
+      - { name: nutritionId, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: Deleted.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/workouts/{startDate}/{endDate}:
+    get:
+      tags: [Workouts]
+      summary: Get workouts by date range
+      description: >-
+        Retrieve the authenticated athlete's planned and completed workouts for a
+        date range. Add includeDescription=true to include the description field.
+        Scope workouts:read.
+      operationId: getWorkouts
+      parameters:
+      - { name: startDate, in: path, required: true, schema: { type: string, format: date } }
+      - { name: endDate, in: path, required: true, schema: { type: string, format: date } }
+      - { name: includeDescription, in: query, required: false, schema: { type: boolean } }
+      responses:
+        '200':
+          description: Workouts in the date range.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Workout' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/workouts/{athleteId}/{startDate}/{endDate}:
+    get:
+      tags: [Workouts]
+      summary: Get athlete workouts by date range
+      description: Coach access to an athlete's workouts for a date range. Scope workouts:read.
+      operationId: getAthleteWorkouts
+      parameters:
+      - { name: athleteId, in: path, required: true, schema: { type: integer, format: int64 } }
+      - { name: startDate, in: path, required: true, schema: { type: string, format: date } }
+      - { name: endDate, in: path, required: true, schema: { type: string, format: date } }
+      - { name: includeDescription, in: query, required: false, schema: { type: boolean } }
+      responses:
+        '200':
+          description: Athlete workouts in the date range.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Workout' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/workouts/changed:
+    get:
+      tags: [Workouts]
+      summary: Get changed workouts
+      description: >-
+        Retrieve the authenticated athlete's workouts changed since a date, for
+        incremental sync. Scope workouts:read.
+      operationId: getChangedWorkouts
+      parameters:
+      - { name: date, in: query, required: true, schema: { type: string, format: date-time } }
+      responses:
+        '200':
+          description: Changed workouts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Workout' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/workouts/{athleteId}/changed:
+    get:
+      tags: [Workouts]
+      summary: Get changed workouts for athlete
+      description: Coach access to an athlete's workouts changed since a date. Scope workouts:read.
+      operationId: getChangedWorkoutsForAthlete
+      parameters:
+      - { name: athleteId, in: path, required: true, schema: { type: integer, format: int64 } }
+      - { name: date, in: query, required: true, schema: { type: string, format: date-time } }
+      responses:
+        '200':
+          description: Changed workouts for the athlete.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Workout' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/workouts/wod/{date}:
+    get:
+      tags: [Workouts]
+      summary: Get Workout of the Day
+      description: >-
+        Retrieve the athlete's upcoming planned workouts (Workout of the Day) for a
+        date, including WorkoutFileFormats. Scope workouts:wod.
+      operationId: getWorkoutOfTheDay
+      parameters:
+      - { name: date, in: path, required: true, schema: { type: string, format: date } }
+      responses:
+        '200':
+          description: Workout of the Day.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Workout' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/workouts/wod/file/{workoutId}/:
+    get:
+      tags: [Workouts]
+      summary: Get structured workout file
+      description: >-
+        Download the structured workout file for a planned workout in fit, erg,
+        mrc, zwo, or json format. Scope workouts:wod.
+      operationId: getWorkoutOfTheDayFile
+      parameters:
+      - { name: workoutId, in: path, required: true, schema: { type: integer, format: int64 } }
+      - { name: format, in: query, required: true, schema: { type: string, enum: [fit, erg, mrc, zwo, json] } }
+      responses:
+        '200':
+          description: The structured workout file.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/workouts/plan:
+    post:
+      tags: [Workouts]
+      summary: Create planned workout
+      description: >-
+        Create a planned workout. Coach (allowed to plan for the athlete) or a
+        premium athlete; basic athletes may only create workouts for today or in
+        the past. Scope workouts:plan.
+      operationId: createWorkout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Workout' }
+      responses:
+        '201':
+          description: The created workout.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Workout' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/workouts/plan/{id}:
+    put:
+      tags: [Workouts]
+      summary: Update planned workout
+      description: Update a planned workout by id. Scope workouts:plan.
+      operationId: updateWorkout
+      parameters:
+      - { name: id, in: path, required: true, schema: { type: integer, format: int64 } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Workout' }
+      responses:
+        '200':
+          description: The updated workout.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Workout' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/workouts/id/{id}:
+    get:
+      tags: [Workouts]
+      summary: Get workout by id
+      description: Retrieve one of the authenticated athlete's workouts by id. Scope workouts:read.
+      operationId: getWorkoutById
+      parameters:
+      - { name: id, in: path, required: true, schema: { type: integer, format: int64 } }
+      - { name: includeDescription, in: query, required: false, schema: { type: boolean } }
+      responses:
+        '200':
+          description: The workout.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Workout' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    delete:
+      tags: [Workouts]
+      summary: Delete workout by id
+      description: Delete one of the authenticated athlete's workouts by id. Scope workouts:plan.
+      operationId: deleteWorkoutById
+      parameters:
+      - { name: id, in: path, required: true, schema: { type: integer, format: int64 } }
+      responses:
+        '200':
+          description: Deleted.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/workouts/{athleteId}/id/{id}:
+    get:
+      tags: [Workouts]
+      summary: Get athlete workout by id
+      description: Coach access to an athlete's workout by id. Scope workouts:read.
+      operationId: getAthleteWorkoutById
+      parameters:
+      - { name: athleteId, in: path, required: true, schema: { type: integer, format: int64 } }
+      - { name: id, in: path, required: true, schema: { type: integer, format: int64 } }
+      - { name: includeDescription, in: query, required: false, schema: { type: boolean } }
+      responses:
+        '200':
+          description: The workout.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Workout' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    delete:
+      tags: [Workouts]
+      summary: Delete athlete workout by id
+      description: Coach access to delete an athlete's workout by id. Scope workouts:plan.
+      operationId: deleteAthleteWorkoutById
+      parameters:
+      - { name: athleteId, in: path, required: true, schema: { type: integer, format: int64 } }
+      - { name: id, in: path, required: true, schema: { type: integer, format: int64 } }
+      responses:
+        '200':
+          description: Deleted.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/workouts/id/{id}/meanmaxes:
+    get:
+      tags: [Workouts]
+      summary: Get workout mean-max data
+      description: >-
+        Mean-max power/pace/HR curves for a completed workout. Premium athlete
+        required (403 for basic). Scope workouts:read.
+      operationId: getWorkoutMeanMax
+      parameters:
+      - { name: id, in: path, required: true, schema: { type: integer, format: int64 } }
+      responses:
+        '200':
+          description: Mean-max data.
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/workouts/{athleteId}/id/{id}/meanmaxes:
+    get:
+      tags: [Workouts]
+      summary: Get athlete workout mean-max data
+      description: Coach access to mean-max data for an athlete's completed workout. Premium required. Scope workouts:read.
+      operationId: getAthleteWorkoutMeanMax
+      parameters:
+      - { name: athleteId, in: path, required: true, schema: { type: integer, format: int64 } }
+      - { name: id, in: path, required: true, schema: { type: integer, format: int64 } }
+      responses:
+        '200':
+          description: Mean-max data.
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/workouts/id/{id}/timeinzones:
+    get:
+      tags: [Workouts]
+      summary: Get workout time in zones
+      description: Time-in-zones for a completed workout. Premium athlete required. Scope workouts:read.
+      operationId: getWorkoutTimeInZones
+      parameters:
+      - { name: id, in: path, required: true, schema: { type: integer, format: int64 } }
+      responses:
+        '200':
+          description: Time-in-zones data.
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/workouts/{athleteId}/id/{id}/timeinzones:
+    get:
+      tags: [Workouts]
+      summary: Get athlete workout time in zones
+      description: Coach access to time-in-zones for an athlete's completed workout. Premium required. Scope workouts:read.
+      operationId: getAthleteWorkoutTimeInZones
+      parameters:
+      - { name: athleteId, in: path, required: true, schema: { type: integer, format: int64 } }
+      - { name: id, in: path, required: true, schema: { type: integer, format: int64 } }
+      responses:
+        '200':
+          description: Time-in-zones data.
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/workouts/id/{id}/details:
+    get:
+      tags: [Workouts]
+      summary: Get workout details
+      description: >-
+        Sample-level detail data for a completed workout. Requires a premium
+        athlete (403), a completed workout (204), and an uploaded workout file
+        (204). Scope workouts:details.
+      operationId: getWorkoutDetails
+      parameters:
+      - { name: id, in: path, required: true, schema: { type: integer, format: int64 } }
+      responses:
+        '200':
+          description: Workout detail sample data.
+        '204':
+          description: No detail data (workout not completed or no file uploaded).
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/workouts/{athleteId}/id/{id}/details:
+    get:
+      tags: [Workouts]
+      summary: Get athlete workout details
+      description: Coach access to sample-level detail data for an athlete's completed workout. Premium required. Scope workouts:details.
+      operationId: getAthleteWorkoutDetails
+      parameters:
+      - { name: athleteId, in: path, required: true, schema: { type: integer, format: int64 } }
+      - { name: id, in: path, required: true, schema: { type: integer, format: int64 } }
+      responses:
+        '200':
+          description: Workout detail sample data.
+        '204':
+          description: No detail data.
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/workouts/{athleteId}/id/{workoutId}/comment:
+    post:
+      tags: [Workouts]
+      summary: Create workout comment
+      description: Post a coach comment to an athlete's workout. Premium athlete required. Scope workouts:details.
+      operationId: createWorkoutComment
+      parameters:
+      - { name: athleteId, in: path, required: true, schema: { type: integer, format: int64 } }
+      - { name: workoutId, in: path, required: true, schema: { type: integer, format: int64 } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Comment: { type: string }
+      responses:
+        '201':
+          description: The created comment.
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/athletes/{athleteId}/strength-workouts:
+    get:
+      tags: [Workouts]
+      summary: Get strength workouts
+      description: Retrieve an athlete's strength workouts. Scope workouts:read.
+      operationId: getStrengthWorkouts
+      parameters:
+      - { name: athleteId, in: path, required: true, schema: { type: integer, format: int64 } }
+      responses:
+        '200':
+          description: Strength workouts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/StrengthWorkout' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/events/next:
+    get:
+      tags: [Events]
+      summary: Get next event
+      description: Retrieve the athlete's next upcoming event. Scope events:read.
+      operationId: getNextEvent
+      responses:
+        '200':
+          description: The next event.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Event' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/events/{date}:
+    get:
+      tags: [Events]
+      summary: Get events by date
+      description: Retrieve the athlete's events for a date. Scope events:read.
+      operationId: getEventsByDate
+      parameters:
+      - { name: date, in: path, required: true, schema: { type: string, format: date } }
+      responses:
+        '200':
+          description: Events on the date.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Event' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/events:
+    post:
+      tags: [Events]
+      summary: Create event
+      description: Create a new event for the athlete. Scope events:write.
+      operationId: createEvent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Event' }
+      responses:
+        '201':
+          description: The created event.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Event' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/athletes/{athleteId}/routes:
+    get:
+      tags: [Routes]
+      summary: Get athlete routes
+      description: Retrieve an athlete's GPS routes. Scope routes:read.
+      operationId: getRoutes
+      parameters:
+      - { name: athleteId, in: path, required: true, schema: { type: integer, format: int64 } }
+      responses:
+        '200':
+          description: The athlete's routes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Route' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v2/athlete/{athleteId}/routes:
+    post:
+      tags: [Routes]
+      summary: Create athlete route
+      description: Create a GPS route for an athlete. Scope routes:write.
+      operationId: createRoute
+      parameters:
+      - { name: athleteId, in: path, required: true, schema: { type: integer, format: int64 } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Route' }
+      responses:
+        '201':
+          description: The created route.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Route' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v1/webhook/subscriptions:
+    get:
+      tags: [Webhooks]
+      summary: List webhook subscriptions
+      description: List webhook subscriptions. Early Access. Scope webhook:read-subscriptions.
+      operationId: getWebhookSubscriptions
+      responses:
+        '200':
+          description: Webhook subscriptions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/WebhookSubscription' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    post:
+      tags: [Webhooks]
+      summary: Create webhook subscription
+      description: >-
+        Create a webhook subscription for an athlete. EventType is one of
+        workout-created, workout-updated, workout-deleted. Early Access. Scope
+        webhook:write-subscriptions.
+      operationId: createWebhookSubscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/WebhookSubscriptionRequest' }
+      responses:
+        '201':
+          description: The created subscription.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/WebhookSubscription' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /v1/webhook/subscriptions/{subscriptionId}:
+    put:
+      tags: [Webhooks]
+      summary: Update webhook subscription
+      description: Update a webhook subscription. Early Access. Scope webhook:write-subscriptions.
+      operationId: updateWebhookSubscription
+      parameters:
+      - { name: subscriptionId, in: path, required: true, schema: { type: string, format: uuid } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/WebhookSubscriptionRequest' }
+      responses:
+        '200':
+          description: The updated subscription.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/WebhookSubscription' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    delete:
+      tags: [Webhooks]
+      summary: Delete webhook subscription
+      description: Delete a webhook subscription. Early Access. Scope webhook:write-subscriptions.
+      operationId: deleteWebhookSubscription
+      parameters:
+      - { name: subscriptionId, in: path, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '200':
+          description: Deleted.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: >-
+        OAuth 2.0 authorization code flow. Tokens are short-lived (expires_in
+        seconds) and refreshed with the refresh_token grant. Scopes are not
+        inclusive (e.g. workouts:details does not include workouts:read) and are
+        limited to those granted to your application.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://oauth.trainingpeaks.com/OAuth/Authorize
+          tokenUrl: https://oauth.trainingpeaks.com/oauth/token
+          refreshUrl: https://oauth.trainingpeaks.com/oauth/token
+          scopes:
+            athlete:profile: Read the authenticated athlete's profile and zones.
+            coach:athletes: Read coach profile, athletes, and assistants.
+            workouts:read: Read planned and completed workouts and analytics.
+            workouts:plan: Create, update, and delete planned workouts.
+            workouts:wod: Read Workout of the Day and structured workout files.
+            workouts:details: Read workout detail samples and post comments.
+            metrics:read: Read athlete metrics.
+            metrics:write: Create athlete metrics.
+            nutrition:read: Read athlete nutrition entries.
+            nutrition:write: Create, update, and delete nutrition entries.
+            events:read: Read athlete events.
+            events:write: Create athlete events.
+            routes:read: Read athlete routes.
+            routes:write: Create athlete routes.
+            file:write: Upload activity files.
+            webhook:read-subscriptions: List webhook subscriptions.
+            webhook:write-subscriptions: Create, update, and delete webhook subscriptions.
+  responses:
+    Unauthorized:
+      description: Bad, expired, or missing authorization header.
+    Forbidden:
+      description: >-
+        Refused - e.g. accessing an athlete no longer attached to the coach, or
+        premium data for a basic athlete.
+    BadRequest:
+      description: One or more required fields are missing or incorrect.
+  schemas:
+    Version:
+      type: object
+      description: API version and build. Confirmed from Info-Version wiki page.
+      properties:
+        Version: { type: string, example: '2.0.1234.0' }
+        Build: { type: string, example: '2.0.1234 1abcd2345 Release' }
+    AthleteProfile:
+      type: object
+      description: Athlete profile. Modeled - property set is representative.
+      properties:
+        Id: { type: integer, format: int64 }
+        FirstName: { type: string }
+        LastName: { type: string }
+        Email: { type: string }
+        IsPremium: { type: boolean, description: Governs which workout fields are returned. }
+        Type: { type: string, description: athlete or coach account type. }
+        TimeZone: { type: string }
+        Units: { type: string, description: english or metric. }
+    CoachProfile:
+      type: object
+      description: Coach profile. Modeled.
+      properties:
+        Id: { type: integer, format: int64 }
+        FirstName: { type: string }
+        LastName: { type: string }
+        Email: { type: string }
+        CoachType: { type: string }
+    Zone:
+      type: object
+      description: Training zone (heart rate, power, or speed). Modeled - deprecated endpoints.
+      properties:
+        ZoneType: { type: string, enum: [heartrate, power, speed] }
+        Minimum: { type: number }
+        Maximum: { type: number }
+        Label: { type: string }
+    Workout:
+      type: object
+      description: >-
+        Planned and/or completed workout. Modeled from the Workouts-Object wiki
+        page; premium-only fields (Calories, TssActual, IF, NormalizedPower, etc.)
+        return null for basic athletes.
+      properties:
+        Id: { type: integer, format: int64 }
+        AthleteId: { type: integer, format: int64 }
+        Title: { type: string }
+        WorkoutType: { type: string, description: e.g. Bike, Run, Swim, Strength. }
+        WorkoutDay: { type: string, format: date-time }
+        StartTime: { type: string, format: date-time }
+        IsItAnActivity: { type: boolean, description: Completed activity vs planned only. }
+        Distance: { type: number }
+        DistancePlanned: { type: number }
+        TotalTime: { type: number }
+        TotalTimePlanned: { type: number }
+        Description: { type: string, description: Returned only when includeDescription=true. }
+        WorkoutFileFormats:
+          type: array
+          description: Available structured file formats (fit, erg, mrc, zwo, json).
+          items: { type: string }
+        Structure: { type: object, description: Structured workout steps; overrides planned distance, duration, and TSS. }
+        TssActual: { type: number, description: Premium only. }
+        TssPlanned: { type: number, description: Premium only. }
+        IF: { type: number, description: Premium only. }
+        NormalizedPower: { type: number, description: Premium only. }
+        Calories: { type: number, description: Premium only. }
+    StrengthWorkout:
+      type: object
+      description: Strength workout. Modeled from Strength-Workouts-Object wiki page.
+      properties:
+        Id: { type: integer, format: int64 }
+        AthleteId: { type: integer, format: int64 }
+        WorkoutDay: { type: string, format: date-time }
+        Title: { type: string }
+        Exercises:
+          type: array
+          items:
+            type: object
+            properties:
+              Name: { type: string }
+              Sets: { type: integer }
+              Reps: { type: integer }
+              Load: { type: number }
+    Metric:
+      type: object
+      description: Athlete wellness/body metric. Modeled from v2 Metrics-Object wiki page.
+      properties:
+        Id: { type: string }
+        AthleteId: { type: integer, format: int64 }
+        Timestamp: { type: string, format: date-time }
+        WeightInKilograms: { type: number }
+        RestingHeartRate: { type: integer }
+        Hrv: { type: number }
+        SleepHours: { type: number }
+        Fatigue: { type: integer }
+        Stress: { type: integer }
+        Soreness: { type: integer }
+    Nutrition:
+      type: object
+      description: Nutrition log entry. Modeled.
+      properties:
+        Id: { type: string }
+        AthleteId: { type: integer, format: int64 }
+        Date: { type: string, format: date }
+        Calories: { type: number }
+        CarbohydratesInGrams: { type: number }
+        ProteinInGrams: { type: number }
+        FatInGrams: { type: number }
+    Event:
+      type: object
+      description: Athlete event. Modeled from Event-Object wiki page.
+      properties:
+        Id: { type: integer, format: int64 }
+        AthleteId: { type: integer, format: int64 }
+        Name: { type: string }
+        Date: { type: string, format: date }
+        Priority: { type: string, description: e.g. A, B, C priority race. }
+        Type: { type: string }
+    Route:
+      type: object
+      description: Athlete GPS route. Modeled from Routes-Object wiki page.
+      properties:
+        Id: { type: integer, format: int64 }
+        AthleteId: { type: integer, format: int64 }
+        Name: { type: string }
+        Distance: { type: number }
+        ElevationGain: { type: number }
+        Coordinates:
+          type: array
+          items:
+            type: array
+            items: { type: number }
+    FileUpload:
+      type: object
+      description: Activity file upload payload. Modeled from File-Upload-Asynchronous wiki page.
+      required: [AthleteId, FileName, Data]
+      properties:
+        AthleteId: { type: integer, format: int64 }
+        FileName: { type: string, description: Must end in .FIT, .TCX, or .PWX. }
+        Data: { type: string, format: byte, description: Base64-encoded file contents. }
+    WebhookSubscriptionRequest:
+      type: object
+      description: Webhook subscription request. Confirmed from Webhook-Create-Subscription wiki page.
+      required: [AthleteId, EventType, WebhookUrl]
+      properties:
+        AthleteId: { type: integer, format: int64, example: 54321 }
+        EventType: { type: string, enum: [workout-created, workout-updated, workout-deleted] }
+        WebhookUrl: { type: string, format: uri, description: URL that receives an HTTP POST on a matching event. }
+    WebhookSubscription:
+      type: object
+      description: Webhook subscription. Confirmed from Webhook-Create-Subscription wiki page.
+      properties:
+        Id: { type: string, format: uuid }
+        AthleteId: { type: integer, format: int64 }
+        EventType: { type: string, enum: [workout-created, workout-updated, workout-deleted] }
+        WebhookUrl: { type: string, format: uri }
+        Active: { type: boolean }
+        CreatedBy: { type: integer, format: int64 }
+        CreatedOn: { type: string, format: date-time }

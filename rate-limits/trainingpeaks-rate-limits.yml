@@ -1,0 +1,84 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: TrainingPeaks
+providerId: trainingpeaks
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Fitness
+- Endurance Training
+- Rate Limiting
+- Quotas
+description: >-
+  TrainingPeaks does not publish a fixed numeric rate limit for the Partners API.
+  Per the API FAQ, there is no preset hard limit; partners are asked to minimize
+  disruptive load, and applications with a much larger user base or that perform
+  large batch operations are asked to contact TrainingPeaks to discuss expected
+  access patterns. Effective throughput is instead shaped by OAuth token lifetime
+  (short-lived access tokens that must be refreshed), by Premium-vs-Basic gating
+  (several endpoints return 403 for basic athletes), and by the recommended
+  incremental-sync pattern (poll the workouts "changed since date" endpoints and
+  subscribe to workout webhooks rather than repeatedly scanning full date ranges).
+notes: >-
+  No published per-minute or per-day request cap as of the review date. High-volume
+  or batch access must be arranged with TrainingPeaks directly. OAuth access tokens
+  are short-lived (expires_in seconds); expired tokens return 401 and must be
+  refreshed with the refresh_token grant.
+sources:
+- https://github.com/TrainingPeaks/PartnersAPI/wiki/Frequently-Asked-Questions
+- https://github.com/TrainingPeaks/PartnersAPI/wiki/OAuth
+- https://github.com/TrainingPeaks/PartnersAPI/wiki/Premium-vs-Basic-Athlete
+- https://github.com/TrainingPeaks/PartnersAPI/wiki/API-Response-Codes
+responseCodes:
+  unauthorized: 401
+  forbidden: 403
+  serviceUnavailable: 503
+limits:
+- name: Partners API Requests
+  scope: application
+  metric: requests
+  limit: not published (no preset hard limit)
+  notes: >-
+    No fixed numeric request-rate limit is documented. Partners are asked to
+    minimize disruptive load; large user bases or batch operations require prior
+    arrangement with TrainingPeaks.
+- name: Premium-Restricted Endpoints
+  scope: athlete
+  metric: access
+  limit: gated by athlete subscription
+  notes: >-
+    Metrics-by-date-range, nutrition-by-date-range, workout details, mean-max, and
+    time-in-zones require a Premium athlete; Basic athletes receive HTTP 403.
+- name: OAuth Access Token Lifetime
+  scope: token
+  metric: seconds
+  limit: short-lived (expires_in)
+  notes: Access tokens expire after a brief period; expired tokens return 401 and must be refreshed.
+- name: Authorization Code Lifetime
+  scope: token
+  metric: minutes
+  limit: 60
+  notes: The authorization code returned to the redirect_uri expires in 60 minutes before token exchange.
+policies:
+- name: Incremental Sync
+  description: >-
+    Use the workouts "changed since date" endpoints and webhook subscriptions
+    (workout-created/updated/deleted) for incremental updates instead of repeatedly
+    scanning full date ranges.
+- name: Contact for Scale
+  description: >-
+    Applications with large user bases or batch workloads must contact TrainingPeaks
+    to discuss expected access patterns before ramping.
+- name: HTTPS Only
+  description: >-
+    All OAuth and API calls must be over HTTPS; insecure HTTP requests receive an
+    HTTP 302 redirect to HTTPS.
+- name: Retry on 503
+  description: >-
+    A 503 Service Unavailable is generally temporary (overload or maintenance);
+    retry the request later.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

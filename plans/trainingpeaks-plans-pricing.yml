@@ -1,0 +1,186 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: TrainingPeaks
+providerId: trainingpeaks
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Fitness
+- Endurance Training
+- Coaching
+- Plans
+description: >-
+  TrainingPeaks has two distinct commercial surfaces. (1) The Partners API
+  (Public API) is a partner program: there is no published price list for API
+  access - developers apply for credentials at api.trainingpeaks.com/request-access,
+  are individually evaluated, and are NOT accepted for personal use. Commercial
+  terms are negotiated per partner. (2) The consumer product is sold as
+  subscriptions - athletes buy Premium, and coaches buy Coach Edition tiers plus
+  per-athlete Premium upgrades. The API returns different data depending on
+  whether the connected athlete is Premium or Basic, so the athlete subscription
+  tier directly affects what an integration can read. Prices below are the
+  publicly listed consumer rates as of mid-2026 and should be re-verified during
+  reconciliation.
+notes: >-
+  API access itself is not sold on a self-serve price list; it is partner-gated
+  and negotiated. Premium-vs-Basic athlete status gates several API endpoints and
+  workout fields (see rate-limits and the OpenAPI Premium-only annotations).
+  Consumer prices vary by promotion, region, and currency - verify on
+  trainingpeaks.com/pricing.
+sources:
+- https://github.com/TrainingPeaks/PartnersAPI/wiki/Frequently-Asked-Questions
+- https://github.com/TrainingPeaks/PartnersAPI/wiki/Premium-vs-Basic-Athlete
+- https://www.trainingpeaks.com/pricing/for-athletes/
+- https://www.trainingpeaks.com/pricing/for-coaches/
+- https://www.trainingpeaks.com/blog/trainingpeaks-pricing/
+plans:
+- id: partner-api
+  name: Partners API (Application Required)
+  type: partner
+  description: >-
+    Access to the TrainingPeaks Public/Partners API. Requires an approved
+    application; TrainingPeaks evaluates each request and does not accept API
+    requests for personal use. Includes sandbox (UAT) and production credentials,
+    a fixed set of granted OAuth scopes, and pre-production validation before
+    promotion. No published self-serve price - commercial terms are negotiated
+    per partner.
+  entries:
+  - label: Partner API Access
+    name: partner_api_access
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact / apply (no public price; not for personal use)
+    userMultiplied: false
+  elements:
+  - name: OAuth 2.0 Credentials (sandbox + production)
+  - name: Granted Scope Set
+  - name: Sandbox / UAT Environment
+  - name: Webhooks (Early Access)
+- id: athlete-basic
+  name: Athlete - Basic (Free)
+  type: free
+  description: >-
+    Free TrainingPeaks athlete account. Usable via the API, but premium-only
+    endpoints (metrics by date range, workout details, mean-max, time-in-zones)
+    and premium workout fields (TSS, IF, power/HR/pace analytics, calories) are
+    withheld and return 403 or null.
+  entries:
+  - label: Basic Athlete
+    name: athlete_basic
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '0.00'
+    userMultiplied: false
+  elements:
+  - name: Calendar and Basic Workouts
+  - name: Limited API Data (non-premium fields only)
+- id: athlete-premium
+  name: Athlete - Premium
+  type: paid
+  description: >-
+    Premium athlete subscription. Unlocks structured workouts, full analytics,
+    and - via the API - the premium-restricted endpoints and workout fields.
+    Listed around 19.95 USD per month or ~134.99 USD per year (annual rate rose
+    from 124.99 in April 2025); verify current rate.
+  entries:
+  - label: Premium Monthly
+    name: athlete_premium_monthly
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '19.95'
+    userMultiplied: false
+  - label: Premium Annual
+    name: athlete_premium_annual
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: '134.99'
+    userMultiplied: false
+  elements:
+  - name: Structured Workouts
+  - name: Full Analytics (TSS, IF, PMC, Peaks)
+  - name: Full API Data Access
+- id: coach-basic
+  name: Coach Edition - Basic
+  type: paid
+  description: >-
+    Coaching subscription. Listed around 21.99 USD per month; includes 1 free
+    Premium athlete and up to 4 Basic athletes. Additional Premium athletes are
+    an add-on.
+  entries:
+  - label: Coach Edition Basic
+    name: coach_basic
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '21.99'
+    userMultiplied: false
+  elements:
+  - name: Coach Calendar and Athlete Management
+  - name: 1 Included Premium Athlete
+  - name: Up to 4 Basic Athletes
+- id: coach-unlimited
+  name: Coach Edition - Unlimited
+  type: paid
+  description: >-
+    Coaching subscription with an unlimited number of Basic athletes. Listed
+    around 54.99 USD per month; includes 1 free Premium athlete.
+  entries:
+  - label: Coach Edition Unlimited
+    name: coach_unlimited
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '54.99'
+    userMultiplied: false
+  elements:
+  - name: Unlimited Basic Athletes
+  - name: 1 Included Premium Athlete
+- id: coach-premium-athlete-addon
+  name: Coach Premium Athlete Add-On
+  type: usage
+  description: >-
+    Per-athlete Premium upgrade purchased by a coach, listed around 9 USD per
+    athlete per month with volume discounts (from 5% at 10 athletes up to ~50% at
+    1000+ athletes). Each upgraded athlete then exposes full premium data through
+    the API.
+  entries:
+  - label: Premium Athlete Upgrade
+    name: coach_premium_athlete
+    type: usage
+    metric: athletes
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '9.00'
+    userMultiplied: true
+  elements:
+  - name: Per-Athlete Premium Data
+  - name: Volume Discounts at Scale
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
