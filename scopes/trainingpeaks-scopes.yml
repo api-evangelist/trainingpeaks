@@ -1,0 +1,116 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/trainingpeaks-openapi.yml
+schemes:
+- name: OAuth2
+  source: openapi/trainingpeaks-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://oauth.trainingpeaks.com/OAuth/Authorize
+    tokenUrl: https://oauth.trainingpeaks.com/oauth/token
+  description: OAuth 2.0 authorization code flow. Tokens are short-lived (expires_in seconds)
+    and refreshed with the refresh_token grant. Scopes are not inclusive (e.g. workouts:details
+    does not include workouts:read) and are limited to those granted to your application.
+scopes:
+- scope: athlete:profile
+  description: Read the authenticated athlete's profile and zones.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trainingpeaks-openapi.yml
+- scope: coach:athletes
+  description: Read coach profile, athletes, and assistants.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trainingpeaks-openapi.yml
+- scope: events:read
+  description: Read athlete events.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trainingpeaks-openapi.yml
+- scope: events:write
+  description: Create athlete events.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trainingpeaks-openapi.yml
+- scope: file:write
+  description: Upload activity files.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trainingpeaks-openapi.yml
+- scope: metrics:read
+  description: Read athlete metrics.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trainingpeaks-openapi.yml
+- scope: metrics:write
+  description: Create athlete metrics.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trainingpeaks-openapi.yml
+- scope: nutrition:read
+  description: Read athlete nutrition entries.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trainingpeaks-openapi.yml
+- scope: nutrition:write
+  description: Create, update, and delete nutrition entries.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trainingpeaks-openapi.yml
+- scope: routes:read
+  description: Read athlete routes.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trainingpeaks-openapi.yml
+- scope: routes:write
+  description: Create athlete routes.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trainingpeaks-openapi.yml
+- scope: webhook:read-subscriptions
+  description: List webhook subscriptions.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trainingpeaks-openapi.yml
+- scope: webhook:write-subscriptions
+  description: Create, update, and delete webhook subscriptions.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trainingpeaks-openapi.yml
+- scope: workouts:details
+  description: Read workout detail samples and post comments.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trainingpeaks-openapi.yml
+- scope: workouts:plan
+  description: Create, update, and delete planned workouts.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trainingpeaks-openapi.yml
+- scope: workouts:read
+  description: Read planned and completed workouts and analytics.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trainingpeaks-openapi.yml
+- scope: workouts:wod
+  description: Read Workout of the Day and structured workout files.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/trainingpeaks-openapi.yml

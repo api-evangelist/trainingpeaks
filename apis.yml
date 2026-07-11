@@ -267,6 +267,10 @@ apis:
     and workout-deleted events per athlete; TrainingPeaks then POSTs an event
     notification to your WebhookUrl. Outbound HTTP callbacks, not a WebSocket.
 common:
+- type: Authentication
+  url: authentication/trainingpeaks-authentication.yml
+- type: OAuthScopes
+  url: scopes/trainingpeaks-scopes.yml
 - type: GitHubOrganization
   url: https://github.com/TrainingPeaks
 - type: LinkedIn
@@ -281,6 +285,8 @@ common:
   url: rate-limits/trainingpeaks-rate-limits.yml
 - type: FinOps
   url: finops/trainingpeaks-finops.yml
+- url: https://www.trainingpeaks.com/feed/
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
