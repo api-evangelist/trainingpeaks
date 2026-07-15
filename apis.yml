@@ -267,6 +267,8 @@ apis:
     and workout-deleted events per athlete; TrainingPeaks then POSTs an event
     notification to your WebhookUrl. Outbound HTTP callbacks, not a WebSocket.
 common:
+- type: AgenticAccess
+  url: agentic-access/trainingpeaks-agentic-access.yml
 - type: DomainSecurity
   url: security/trainingpeaks-domain-security.yml
 - type: Authentication
