@@ -1,0 +1,83 @@
+openapi: 3.0.3
+info:
+  title: TrainingPeaks Partners Athlete Info API
+  version: '2.0'
+  description: 'The TrainingPeaks Partners API (Public API) lets approved third-party applications read and write TrainingPeaks data on behalf of a user - athlete profiles, planned and completed workouts, structured workout files, wellness metrics, nutrition, events, routes, coach relationships, activity file uploads, and workout webhooks. It is a JSON over HTTPS REST API secured with OAuth 2.0 (authorization_code and refresh_token grants).
+
+
+    ACCESS MODEL: Access is partner-gated. Applications must request credentials at https://api.trainingpeaks.com/request-access and are individually evaluated; TrainingPeaks states it is not accepting API requests for personal use. Each application is granted a fixed set of OAuth scopes; requesting more scopes than granted causes the token exchange to fail. The full API surface is publicly documented at https://github.com/TrainingPeaks/PartnersAPI/wiki, from which this specification was authored.
+
+
+    ENDPOINT PROVENANCE: All paths, HTTP methods, and OAuth scopes in this document are CONFIRMED against the public PartnersAPI wiki API-Endpoints page. Request and response SCHEMAS are MODELED from the wiki object pages and examples, because the live reference responses require partner credentials and an authorized user; treat the property lists as representative rather than exhaustive (marked with x-endpoints-modeled below).'
+  contact:
+    name: TrainingPeaks API Partnerships Team
+    url: https://api.trainingpeaks.com/request-access
+  x-access-model: partner-gated (application required; not available for personal use)
+  x-endpoints-confirmed: true
+  x-schemas-modeled: true
+  x-documentation: https://github.com/TrainingPeaks/PartnersAPI/wiki
+servers:
+- url: https://api.trainingpeaks.com
+  description: Production
+- url: https://api.sandbox.trainingpeaks.com
+  description: Sandbox (UAT; database refreshed weekly from production)
+security:
+- OAuth2: []
+tags:
+- name: Info
+  description: Service information and version.
+paths:
+  /v1/info/version:
+    get:
+      tags:
+      - Info
+      summary: Get API version
+      description: Returns the API build and version. No OAuth scope required.
+      operationId: getVersion
+      security: []
+      responses:
+        '200':
+          description: Version information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Version'
+components:
+  schemas:
+    Version:
+      type: object
+      description: API version and build. Confirmed from Info-Version wiki page.
+      properties:
+        Version:
+          type: string
+          example: 2.0.1234.0
+        Build:
+          type: string
+          example: 2.0.1234 1abcd2345 Release
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 authorization code flow. Tokens are short-lived (expires_in seconds) and refreshed with the refresh_token grant. Scopes are not inclusive (e.g. workouts:details does not include workouts:read) and are limited to those granted to your application.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://oauth.trainingpeaks.com/OAuth/Authorize
+          tokenUrl: https://oauth.trainingpeaks.com/oauth/token
+          refreshUrl: https://oauth.trainingpeaks.com/oauth/token
+          scopes:
+            athlete:profile: Read the authenticated athlete's profile and zones.
+            coach:athletes: Read coach profile, athletes, and assistants.
+            workouts:read: Read planned and completed workouts and analytics.
+            workouts:plan: Create, update, and delete planned workouts.
+            workouts:wod: Read Workout of the Day and structured workout files.
+            workouts:details: Read workout detail samples and post comments.
+            metrics:read: Read athlete metrics.
+            metrics:write: Create athlete metrics.
+            nutrition:read: Read athlete nutrition entries.
+            nutrition:write: Create, update, and delete nutrition entries.
+            events:read: Read athlete events.
+            events:write: Create athlete events.
+            routes:read: Read athlete routes.
+            routes:write: Create athlete routes.
+            file:write: Upload activity files.
+            webhook:read-subscriptions: List webhook subscriptions.
+            webhook:write-subscriptions: Create, update, and delete webhook subscriptions.
