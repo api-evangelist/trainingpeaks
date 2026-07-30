@@ -13,7 +13,20 @@ description: TrainingPeaks is an endurance-athlete training platform for cyclist
   behalf of a user. API access is partner-gated - developers must apply for
   credentials and are not accepting requests for personal use - but the API surface
   is publicly documented on the PartnersAPI GitHub wiki.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: approval
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium · Requires approval
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/trainingpeaks.png
 tags:
 - Fitness
 - Endurance Training
@@ -28,244 +41,554 @@ specificationVersion: '0.19'
 apis:
 - aid: trainingpeaks:trainingpeaks-athlete-api
   name: TrainingPeaks Athlete API
-  tags:
-  - Athlete
-  - Profile
-  - Zones
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: Authenticated athlete profile and (deprecated) training zones.
   humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
   baseURL: https://api.trainingpeaks.com
-  properties:
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki
-    type: Documentation
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
-    type: APIReference
-  - url: openapi/trainingpeaks-openapi.yml
-    type: OpenAPI
-  - url: collections/trainingpeaks.postman_collection.json
-    type: PostmanCollection
-  - url: collections/trainingpeaks.opencollection.json
-    type: OpenCollection
-  description: Retrieve the authenticated athlete's profile (athlete:profile scope)
-    and their (deprecated) heart-rate, power, and speed training zones. The profile
-    identifies the athlete and whether they are premium or basic, which governs
-    what workout data is returned across the rest of the API.
-- aid: trainingpeaks:trainingpeaks-workouts-api
-  name: TrainingPeaks Workouts API
   tags:
-  - Workouts
-  - Planned
-  - Completed
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get
-  baseURL: https://api.trainingpeaks.com
-  properties:
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/API-Endpoints
-    type: Documentation
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get
-    type: APIReference
-  - url: openapi/trainingpeaks-openapi.yml
-    type: OpenAPI
-  - url: collections/trainingpeaks.postman_collection.json
-    type: PostmanCollection
-  - url: collections/trainingpeaks.opencollection.json
-    type: OpenCollection
-  description: Read planned and completed workouts by date range, create and update
-    planned workouts (workouts:plan), fetch a workout by id, delete workouts, and
-    poll for changes since a date. Covers both the athlete's own workouts and, for
-    coach tokens, an athlete's workouts by athlete id.
-- aid: trainingpeaks:trainingpeaks-workout-details-api
-  name: TrainingPeaks Workout Details API
-  tags:
-  - Workouts
-  - Analytics
-  - Mean Max
-  - Time in Zones
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Details
-  baseURL: https://api.trainingpeaks.com
-  properties:
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Details
-    type: Documentation
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Mean-Max-Data
-    type: APIReference
-  - url: openapi/trainingpeaks-openapi.yml
-    type: OpenAPI
-  - url: collections/trainingpeaks.postman_collection.json
-    type: PostmanCollection
-  - url: collections/trainingpeaks.opencollection.json
-    type: OpenCollection
-  description: Premium-only analytics for completed workouts - sample-level details
-    (workouts:details), mean-max power/pace/HR curves (meanmaxes), and time-in-zones
-    breakdowns. Also posts a coach comment to a workout. Requires a premium athlete
-    and an uploaded workout file, otherwise returns 403 or 204.
-- aid: trainingpeaks:trainingpeaks-workout-of-the-day-api
-  name: TrainingPeaks Workout of the Day API
-  tags:
-  - Workouts
-  - Structured Workouts
-  - WOD
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Get
-  baseURL: https://api.trainingpeaks.com
-  properties:
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Get
-    type: Documentation
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Structured-Workout-File
-    type: APIReference
-  - url: openapi/trainingpeaks-openapi.yml
-    type: OpenAPI
-  - url: collections/trainingpeaks.postman_collection.json
-    type: PostmanCollection
-  - url: collections/trainingpeaks.opencollection.json
-    type: OpenCollection
-  description: Retrieve the athlete's Workout of the Day (upcoming planned workouts
-    for a date) and download the structured workout file for a planned workout in
-    fit, erg, mrc, zwo, or json format for delivery to head units and smart trainers
-    (workouts:wod).
-- aid: trainingpeaks:trainingpeaks-metrics-api
-  name: TrainingPeaks Metrics API
-  tags:
-  - Metrics
-  - Wellness
-  - Body Metrics
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/v2-Metrics-Get
-  baseURL: https://api.trainingpeaks.com
-  properties:
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Metrics-Object
-    type: Documentation
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/v2-Metrics-Get-By-Date-Range
-    type: APIReference
-  - url: openapi/trainingpeaks-openapi.yml
-    type: OpenAPI
-  - url: collections/trainingpeaks.postman_collection.json
-    type: PostmanCollection
-  - url: collections/trainingpeaks.opencollection.json
-    type: OpenCollection
-  description: Read and write athlete wellness/body metrics (weight, HRV, resting
-    heart rate, sleep, and more) by metric id, by date range, or per athlete id for
-    coaches, and create new metric entries (metrics:read and metrics:write).
-    Date-range metrics reads require a premium athlete.
-- aid: trainingpeaks:trainingpeaks-nutrition-api
-  name: TrainingPeaks Nutrition API
-  tags:
-  - Nutrition
   - Athlete
-  - Logging
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Nutrition
-  baseURL: https://api.trainingpeaks.com
   properties:
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Nutrition
-    type: Documentation
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Post-Nutrition
-    type: APIReference
-  - url: openapi/trainingpeaks-openapi.yml
-    type: OpenAPI
-  - url: collections/trainingpeaks.postman_collection.json
-    type: PostmanCollection
-  - url: collections/trainingpeaks.opencollection.json
-    type: OpenCollection
-  description: Get, create, update, and delete an athlete's nutrition log entries
-    (nutrition:read and nutrition:write). Nutrition reads by date range are a
-    premium-athlete restricted endpoint.
+  - type: OpenAPI
+    url: openapi/trainingpeaks-athlete-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
+  - type: PostmanCollection
+    url: collections/trainingpeaks.postman_collection.json
+  - type: OpenCollection
+    url: collections/trainingpeaks.opencollection.json
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/API-Endpoints
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Details
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Mean-Max-Data
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Get
+  - type: APIReference
+    url: >-
+      https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Structured-Workout-File
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Metrics-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/v2-Metrics-Get-By-Date-Range
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Nutrition
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Post-Nutrition
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Profile
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Athletes
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload-Asynchronous
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Event-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Routes-Object
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Create-Subscription
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Get-Subscriptions
 - aid: trainingpeaks:trainingpeaks-coach-api
   name: TrainingPeaks Coach API
+  description: Coach profile, athletes, and assistant management.
+  humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
+  baseURL: https://api.trainingpeaks.com
   tags:
   - Coach
-  - Athletes
-  - Assistants
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Athletes
-  baseURL: https://api.trainingpeaks.com
   properties:
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Profile
-    type: Documentation
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Athletes
-    type: APIReference
-  - url: openapi/trainingpeaks-openapi.yml
-    type: OpenAPI
-  - url: collections/trainingpeaks.postman_collection.json
-    type: PostmanCollection
-  - url: collections/trainingpeaks.opencollection.json
-    type: OpenCollection
-  description: For coach-authorized tokens (coach:athletes scope) - list the coach's
-    athletes, read the coach profile, manage assistant coaches and their athlete
-    rosters, and read athletes' training zones. Coach tokens then drive the
-    per-athlete-id variants of the workouts and metrics endpoints.
-- aid: trainingpeaks:trainingpeaks-file-upload-api
-  name: TrainingPeaks File Upload API
-  tags:
-  - File Upload
-  - FIT
-  - Activities
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload-Asynchronous
+  - type: OpenAPI
+    url: openapi/trainingpeaks-coach-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
+  - type: PostmanCollection
+    url: collections/trainingpeaks.postman_collection.json
+  - type: OpenCollection
+    url: collections/trainingpeaks.opencollection.json
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/API-Endpoints
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Details
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Mean-Max-Data
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Get
+  - type: APIReference
+    url: >-
+      https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Structured-Workout-File
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Metrics-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/v2-Metrics-Get-By-Date-Range
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Nutrition
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Post-Nutrition
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Profile
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Athletes
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload-Asynchronous
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Event-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Routes-Object
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Create-Subscription
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Get-Subscriptions
+- aid: trainingpeaks:trainingpeaks-events-api
+  name: TrainingPeaks Events API
+  description: Athlete events.
+  humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
   baseURL: https://api.trainingpeaks.com
-  properties:
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload
-    type: Documentation
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload-Asynchronous
-    type: APIReference
-  - url: openapi/trainingpeaks-openapi.yml
-    type: OpenAPI
-  - url: collections/trainingpeaks.postman_collection.json
-    type: PostmanCollection
-  - url: collections/trainingpeaks.opencollection.json
-    type: OpenCollection
-  description: Upload a completed device/activity file (.FIT, .TCX, or .PWX) to an
-    athlete's account via the asynchronous POST v3/file endpoint (file:write).
-    Synchronous upload was deprecated in June 2023; uploads are processed
-    asynchronously and matched against the athlete's calendar.
-- aid: trainingpeaks:trainingpeaks-events-routes-api
-  name: TrainingPeaks Events and Routes API
   tags:
   - Events
-  - Routes
-  - Planning
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Event-Create
-  baseURL: https://api.trainingpeaks.com
   properties:
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Event-Object
-    type: Documentation
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Routes-Object
-    type: APIReference
-  - url: openapi/trainingpeaks-openapi.yml
-    type: OpenAPI
-  - url: collections/trainingpeaks.postman_collection.json
-    type: PostmanCollection
-  - url: collections/trainingpeaks.opencollection.json
-    type: OpenCollection
-  description: Read the athlete's next event and events by date, create new events
-    (events:read and events:write), and read or create GPS routes for an athlete
-    (routes:read and routes:write) that structured and planned workouts can be
-    associated with.
+  - type: OpenAPI
+    url: openapi/trainingpeaks-events-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
+  - type: PostmanCollection
+    url: collections/trainingpeaks.postman_collection.json
+  - type: OpenCollection
+    url: collections/trainingpeaks.opencollection.json
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/API-Endpoints
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Details
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Mean-Max-Data
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Get
+  - type: APIReference
+    url: >-
+      https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Structured-Workout-File
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Metrics-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/v2-Metrics-Get-By-Date-Range
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Nutrition
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Post-Nutrition
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Profile
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Athletes
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload-Asynchronous
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Event-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Routes-Object
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Create-Subscription
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Get-Subscriptions
+- aid: trainingpeaks:trainingpeaks-file-api
+  name: TrainingPeaks File API
+  description: Asynchronous activity file uploads.
+  humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
+  baseURL: https://api.trainingpeaks.com
+  tags:
+  - File
+  properties:
+  - type: OpenAPI
+    url: openapi/trainingpeaks-file-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
+  - type: PostmanCollection
+    url: collections/trainingpeaks.postman_collection.json
+  - type: OpenCollection
+    url: collections/trainingpeaks.opencollection.json
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/API-Endpoints
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Details
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Mean-Max-Data
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Get
+  - type: APIReference
+    url: >-
+      https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Structured-Workout-File
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Metrics-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/v2-Metrics-Get-By-Date-Range
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Nutrition
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Post-Nutrition
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Profile
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Athletes
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload-Asynchronous
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Event-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Routes-Object
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Create-Subscription
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Get-Subscriptions
+- aid: trainingpeaks:trainingpeaks-info-api
+  name: TrainingPeaks Info API
+  description: Service information and version.
+  humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
+  baseURL: https://api.trainingpeaks.com
+  tags:
+  - Info
+  properties:
+  - type: OpenAPI
+    url: openapi/trainingpeaks-info-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
+  - type: PostmanCollection
+    url: collections/trainingpeaks.postman_collection.json
+  - type: OpenCollection
+    url: collections/trainingpeaks.opencollection.json
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/API-Endpoints
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Details
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Mean-Max-Data
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Get
+  - type: APIReference
+    url: >-
+      https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Structured-Workout-File
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Metrics-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/v2-Metrics-Get-By-Date-Range
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Nutrition
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Post-Nutrition
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Profile
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Athletes
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload-Asynchronous
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Event-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Routes-Object
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Create-Subscription
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Get-Subscriptions
+- aid: trainingpeaks:trainingpeaks-metrics-api
+  name: TrainingPeaks Metrics API
+  description: Athlete wellness and body metrics.
+  humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
+  baseURL: https://api.trainingpeaks.com
+  tags:
+  - Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/trainingpeaks-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
+  - type: PostmanCollection
+    url: collections/trainingpeaks.postman_collection.json
+  - type: OpenCollection
+    url: collections/trainingpeaks.opencollection.json
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/API-Endpoints
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Details
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Mean-Max-Data
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Get
+  - type: APIReference
+    url: >-
+      https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Structured-Workout-File
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Metrics-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/v2-Metrics-Get-By-Date-Range
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Nutrition
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Post-Nutrition
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Profile
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Athletes
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload-Asynchronous
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Event-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Routes-Object
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Create-Subscription
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Get-Subscriptions
+- aid: trainingpeaks:trainingpeaks-nutrition-api
+  name: TrainingPeaks Nutrition API
+  description: Athlete nutrition log entries.
+  humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
+  baseURL: https://api.trainingpeaks.com
+  tags:
+  - Nutrition
+  properties:
+  - type: OpenAPI
+    url: openapi/trainingpeaks-nutrition-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
+  - type: PostmanCollection
+    url: collections/trainingpeaks.postman_collection.json
+  - type: OpenCollection
+    url: collections/trainingpeaks.opencollection.json
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/API-Endpoints
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Details
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Mean-Max-Data
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Get
+  - type: APIReference
+    url: >-
+      https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Structured-Workout-File
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Metrics-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/v2-Metrics-Get-By-Date-Range
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Nutrition
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Post-Nutrition
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Profile
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Athletes
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload-Asynchronous
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Event-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Routes-Object
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Create-Subscription
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Get-Subscriptions
+- aid: trainingpeaks:trainingpeaks-routes-api
+  name: TrainingPeaks Routes API
+  description: Athlete GPS routes.
+  humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
+  baseURL: https://api.trainingpeaks.com
+  tags:
+  - Routes
+  properties:
+  - type: OpenAPI
+    url: openapi/trainingpeaks-routes-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
+  - type: PostmanCollection
+    url: collections/trainingpeaks.postman_collection.json
+  - type: OpenCollection
+    url: collections/trainingpeaks.opencollection.json
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/API-Endpoints
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Details
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Mean-Max-Data
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Get
+  - type: APIReference
+    url: >-
+      https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Structured-Workout-File
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Metrics-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/v2-Metrics-Get-By-Date-Range
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Nutrition
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Post-Nutrition
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Profile
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Athletes
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload-Asynchronous
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Event-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Routes-Object
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Create-Subscription
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Get-Subscriptions
 - aid: trainingpeaks:trainingpeaks-webhooks-api
   name: TrainingPeaks Webhooks API
+  description: Workout webhook subscriptions (Early Access).
+  humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
+  baseURL: https://api.trainingpeaks.com
   tags:
   - Webhooks
-  - Subscriptions
-  - Push
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Create-Subscription
-  baseURL: https://api.trainingpeaks.com
   properties:
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Create-Subscription
-    type: Documentation
-  - url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Get-Subscriptions
-    type: APIReference
-  - url: openapi/trainingpeaks-openapi.yml
-    type: OpenAPI
-  - url: collections/trainingpeaks.postman_collection.json
-    type: PostmanCollection
-  - url: collections/trainingpeaks.opencollection.json
-    type: OpenCollection
-  description: Early Access CRUD for webhook subscriptions (webhook:read-subscriptions
-    and webhook:write-subscriptions). Subscribe to workout-created, workout-updated,
-    and workout-deleted events per athlete; TrainingPeaks then POSTs an event
-    notification to your WebhookUrl. Outbound HTTP callbacks, not a WebSocket.
+  - type: OpenAPI
+    url: openapi/trainingpeaks-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
+  - type: PostmanCollection
+    url: collections/trainingpeaks.postman_collection.json
+  - type: OpenCollection
+    url: collections/trainingpeaks.opencollection.json
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/API-Endpoints
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Details
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Mean-Max-Data
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Get
+  - type: APIReference
+    url: >-
+      https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Structured-Workout-File
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Metrics-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/v2-Metrics-Get-By-Date-Range
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Nutrition
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Post-Nutrition
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Profile
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Athletes
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload-Asynchronous
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Event-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Routes-Object
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Create-Subscription
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Get-Subscriptions
+- aid: trainingpeaks:trainingpeaks-workouts-api
+  name: TrainingPeaks Workouts API
+  description: Planned and completed workouts, changes, details, and analytics.
+  humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
+  baseURL: https://api.trainingpeaks.com
+  tags:
+  - Workouts
+  properties:
+  - type: OpenAPI
+    url: openapi/trainingpeaks-workouts-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
+  - type: PostmanCollection
+    url: collections/trainingpeaks.postman_collection.json
+  - type: OpenCollection
+    url: collections/trainingpeaks.opencollection.json
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/API-Endpoints
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Details
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workouts-Get-Mean-Max-Data
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Get
+  - type: APIReference
+    url: >-
+      https://github.com/TrainingPeaks/PartnersAPI/wiki/Workout-Of-The-Day-Structured-Workout-File
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Metrics-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/v2-Metrics-Get-By-Date-Range
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Nutrition
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Post-Nutrition
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Profile
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Coach-Get-Athletes
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/File-Upload-Asynchronous
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Event-Object
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Routes-Object
+  - type: Documentation
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Create-Subscription
+  - type: APIReference
+    url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Get-Subscriptions
 common:
 - type: AgenticAccess
   url: agentic-access/trainingpeaks-agentic-access.yml
