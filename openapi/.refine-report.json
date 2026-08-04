@@ -1,0 +1,32 @@
+{
+  "provider": "trainingpeaks",
+  "sources": [
+    "trainingpeaks-athlete-api-openapi.yml",
+    "trainingpeaks-coach-api-openapi.yml",
+    "trainingpeaks-events-api-openapi.yml",
+    "trainingpeaks-file-api-openapi.yml",
+    "trainingpeaks-info-api-openapi.yml",
+    "trainingpeaks-metrics-api-openapi.yml",
+    "trainingpeaks-nutrition-api-openapi.yml",
+    "trainingpeaks-routes-api-openapi.yml",
+    "trainingpeaks-webhooks-api-openapi.yml",
+    "trainingpeaks-workouts-api-openapi.yml"
+  ],
+  "outputs": [
+    "trainingpeaks-athlete-api-openapi.yml",
+    "trainingpeaks-coach-api-openapi.yml",
+    "trainingpeaks-events-api-openapi.yml",
+    "trainingpeaks-file-api-openapi.yml",
+    "trainingpeaks-info-api-openapi.yml",
+    "trainingpeaks-metrics-api-openapi.yml",
+    "trainingpeaks-nutrition-api-openapi.yml",
+    "trainingpeaks-routes-api-openapi.yml",
+    "trainingpeaks-webhooks-api-openapi.yml",
+    "trainingpeaks-workouts-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
