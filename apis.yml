@@ -37,7 +37,7 @@ tags:
 - Wearables
 created: '2026-07-03'
 modified: '2026-07-03'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: trainingpeaks:trainingpeaks-athlete-api
   name: TrainingPeaks Athlete API
