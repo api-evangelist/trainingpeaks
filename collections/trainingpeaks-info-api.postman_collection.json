@@ -1,0 +1,139 @@
+{
+  "item": [
+    {
+      "id": "0414c6a4-7550-4cdb-b14d-d980cf03d22b",
+      "name": "Info",
+      "description": {
+        "content": "Service information and version.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7455ab7e-a994-4785-8f5b-49c393bddc80",
+          "name": "Get API version",
+          "request": {
+            "name": "Get API version",
+            "description": {
+              "content": "Returns the API build and version. No OAuth scope required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "info",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "835d529d-8c40-4f85-9285-2e4051fac15f",
+              "name": "Version information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "info",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Version\": \"2.0.1234.0\",\n  \"Build\": \"2.0.1234 1abcd2345 Release\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trainingpeaks.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "athlete:profile coach:athletes workouts:read workouts:plan workouts:wod workouts:details metrics:read metrics:write nutrition:read nutrition:write events:read events:write routes:read routes:write file:write webhook:read-subscriptions webhook:write-subscriptions"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://oauth.trainingpeaks.com/oauth/token"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://oauth.trainingpeaks.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://oauth.trainingpeaks.com/OAuth/Authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b68939c3-ca76-44fa-b09f-e2d358f9c1ac",
+    "name": "TrainingPeaks Partners Athlete Info API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The TrainingPeaks Partners API (Public API) lets approved third-party applications read and write TrainingPeaks data on behalf of a user - athlete profiles, planned and completed workouts, structured workout files, wellness metrics, nutrition, events, routes, coach relationships, activity file uploads, and workout webhooks. It is a JSON over HTTPS REST API secured with OAuth 2.0 (authorization_code and refresh_token grants).\n\nACCESS MODEL: Access is partner-gated. Applications must request credentials at https://api.trainingpeaks.com/request-access and are individually evaluated; TrainingPeaks states it is not accepting API requests for personal use. Each application is granted a fixed set of OAuth scopes; requesting more scopes than granted causes the token exchange to fail. The full API surface is publicly documented at https://github.com/TrainingPeaks/PartnersAPI/wiki, from which this specification was authored.\n\nENDPOINT PROVENANCE: All paths, HTTP methods, and OAuth scopes in this document are CONFIRMED against the public PartnersAPI wiki API-Endpoints page. Request and response SCHEMAS are MODELED from the wiki object pages and examples, because the live reference responses require partner credentials and an authorized user; treat the property lists as representative rather than exhaustive (marked with x-endpoints-modeled below).\n\nContact Support:\n Name: TrainingPeaks API Partnerships Team",
+      "type": "text/plain"
+    }
+  }
+}

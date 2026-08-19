@@ -1,0 +1,444 @@
+{
+  "item": [
+    {
+      "id": "2f2d577d-35e6-4137-bc32-b1ff9f34aa98",
+      "name": "Routes",
+      "description": {
+        "content": "Athlete GPS routes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bad73605-fe06-415a-9870-fa54b860c9e4",
+          "name": "Get athlete routes",
+          "request": {
+            "name": "Get athlete routes",
+            "description": {
+              "content": "Retrieve an athlete's GPS routes. Scope routes:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "athletes",
+                ":athleteId",
+                "routes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "athleteId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9cc22b0a-4ae1-4bc9-8a14-dd116bcb212b",
+              "name": "The athlete's routes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "athletes",
+                    ":athleteId",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": 7812,\n    \"AthleteId\": 7642,\n    \"Name\": \"string\",\n    \"Distance\": 4035.599036105556,\n    \"ElevationGain\": 3540.1559289517027,\n    \"Coordinates\": [\n      [\n        9050.559270361668,\n        5052.600367267937\n      ],\n      [\n        6645.832127054158,\n        6942.4437384752355\n      ]\n    ]\n  },\n  {\n    \"Id\": 1099,\n    \"AthleteId\": 6946,\n    \"Name\": \"string\",\n    \"Distance\": 5339.297065961603,\n    \"ElevationGain\": 5280.830890281444,\n    \"Coordinates\": [\n      [\n        1465.9056581799223,\n        5894.578155951998\n      ],\n      [\n        2008.3646670583032,\n        246.1846636777787\n      ]\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "877b085f-9396-4299-afb4-25d4595ad6cf",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "athletes",
+                    ":athleteId",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "241cb048-00d9-4111-9be5-0e51d81c22bb",
+          "name": "Create athlete route",
+          "request": {
+            "name": "Create athlete route",
+            "description": {
+              "content": "Create a GPS route for an athlete. Scope routes:write.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "athlete",
+                ":athleteId",
+                "routes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "athleteId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Name\": \"<string>\",\n  \"Distance\": \"<number>\",\n  \"ElevationGain\": \"<number>\",\n  \"Coordinates\": [\n    [\n      \"<number>\",\n      \"<number>\"\n    ],\n    [\n      \"<number>\",\n      \"<number>\"\n    ]\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e777c14-8a17-447e-a0ed-8006af33e2f6",
+              "name": "The created route.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "athlete",
+                    ":athleteId",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Name\": \"<string>\",\n  \"Distance\": \"<number>\",\n  \"ElevationGain\": \"<number>\",\n  \"Coordinates\": [\n    [\n      \"<number>\",\n      \"<number>\"\n    ],\n    [\n      \"<number>\",\n      \"<number>\"\n    ]\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Name\": \"<string>\",\n  \"Distance\": \"<number>\",\n  \"ElevationGain\": \"<number>\",\n  \"Coordinates\": [\n    [\n      \"<number>\",\n      \"<number>\"\n    ],\n    [\n      \"<number>\",\n      \"<number>\"\n    ]\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a65a6ceb-c6a6-41b8-a30a-766ccec447c1",
+              "name": "One or more required fields are missing or incorrect.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "athlete",
+                    ":athleteId",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Name\": \"<string>\",\n  \"Distance\": \"<number>\",\n  \"ElevationGain\": \"<number>\",\n  \"Coordinates\": [\n    [\n      \"<number>\",\n      \"<number>\"\n    ],\n    [\n      \"<number>\",\n      \"<number>\"\n    ]\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ad949c62-7462-4d35-8244-736cdaac5218",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "athlete",
+                    ":athleteId",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Name\": \"<string>\",\n  \"Distance\": \"<number>\",\n  \"ElevationGain\": \"<number>\",\n  \"Coordinates\": [\n    [\n      \"<number>\",\n      \"<number>\"\n    ],\n    [\n      \"<number>\",\n      \"<number>\"\n    ]\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trainingpeaks.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "athlete:profile coach:athletes workouts:read workouts:plan workouts:wod workouts:details metrics:read metrics:write nutrition:read nutrition:write events:read events:write routes:read routes:write file:write webhook:read-subscriptions webhook:write-subscriptions"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://oauth.trainingpeaks.com/oauth/token"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://oauth.trainingpeaks.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://oauth.trainingpeaks.com/OAuth/Authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "74c20af3-cba5-48d1-bec2-1fe983655e40",
+    "name": "TrainingPeaks Partners Athlete Routes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The TrainingPeaks Partners API (Public API) lets approved third-party applications read and write TrainingPeaks data on behalf of a user - athlete profiles, planned and completed workouts, structured workout files, wellness metrics, nutrition, events, routes, coach relationships, activity file uploads, and workout webhooks. It is a JSON over HTTPS REST API secured with OAuth 2.0 (authorization_code and refresh_token grants).\n\nACCESS MODEL: Access is partner-gated. Applications must request credentials at https://api.trainingpeaks.com/request-access and are individually evaluated; TrainingPeaks states it is not accepting API requests for personal use. Each application is granted a fixed set of OAuth scopes; requesting more scopes than granted causes the token exchange to fail. The full API surface is publicly documented at https://github.com/TrainingPeaks/PartnersAPI/wiki, from which this specification was authored.\n\nENDPOINT PROVENANCE: All paths, HTTP methods, and OAuth scopes in this document are CONFIRMED against the public PartnersAPI wiki API-Endpoints page. Request and response SCHEMAS are MODELED from the wiki object pages and examples, because the live reference responses require partner credentials and an authorized user; treat the property lists as representative rather than exhaustive (marked with x-endpoints-modeled below).\n\nContact Support:\n Name: TrainingPeaks API Partnerships Team",
+      "type": "text/plain"
+    }
+  }
+}

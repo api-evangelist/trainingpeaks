@@ -1,0 +1,3900 @@
+{
+  "item": [
+    {
+      "id": "0fb0c556-a506-4911-a951-14b24053bab7",
+      "name": "Workouts",
+      "description": {
+        "content": "Planned and completed workouts, changes, details, and analytics.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2e0c741f-2e1f-43ed-a58a-c42a563294d6",
+          "name": "Get workouts by date range",
+          "request": {
+            "name": "Get workouts by date range",
+            "description": {
+              "content": "Retrieve the authenticated athlete's planned and completed workouts for a date range. Add includeDescription=true to include the description field. Scope workouts:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                ":startDate",
+                ":endDate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeDescription",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "startDate",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "endDate",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "919edfd3-10a1-47cb-9035-daf8816a2530",
+              "name": "Workouts in the date range.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":startDate",
+                    ":endDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeDescription",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "endDate",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": 7674,\n    \"AthleteId\": 3142,\n    \"Title\": \"string\",\n    \"WorkoutType\": \"string\",\n    \"WorkoutDay\": \"1961-03-10T01:59:06.196Z\",\n    \"StartTime\": \"1970-03-19T14:24:49.006Z\",\n    \"IsItAnActivity\": true,\n    \"Distance\": 6417.495661699122,\n    \"DistancePlanned\": 2713.420618642489,\n    \"TotalTime\": 3913.5274194916146,\n    \"TotalTimePlanned\": 7263.22458656529,\n    \"Description\": \"string\",\n    \"WorkoutFileFormats\": [\n      \"string\",\n      \"string\"\n    ],\n    \"Structure\": {},\n    \"TssActual\": 3006.9043492776314,\n    \"TssPlanned\": 1759.9636370352378,\n    \"IF\": 1187.9381936009058,\n    \"NormalizedPower\": 1219.6108248219239,\n    \"Calories\": 4928.941180020033\n  },\n  {\n    \"Id\": 1694,\n    \"AthleteId\": 1422,\n    \"Title\": \"string\",\n    \"WorkoutType\": \"string\",\n    \"WorkoutDay\": \"2014-10-04T02:26:48.645Z\",\n    \"StartTime\": \"2017-06-20T04:47:46.543Z\",\n    \"IsItAnActivity\": true,\n    \"Distance\": 2559.241082998469,\n    \"DistancePlanned\": 8969.887435274159,\n    \"TotalTime\": 7529.877917303927,\n    \"TotalTimePlanned\": 8910.172166096752,\n    \"Description\": \"string\",\n    \"WorkoutFileFormats\": [\n      \"string\",\n      \"string\"\n    ],\n    \"Structure\": {},\n    \"TssActual\": 9270.086413716428,\n    \"TssPlanned\": 8299.092500800863,\n    \"IF\": 9353.321506121358,\n    \"NormalizedPower\": 9398.831955947686,\n    \"Calories\": 6080.110823508453\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9163ef35-15d8-45e9-abb0-572ed34eb5f9",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":startDate",
+                    ":endDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeDescription",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "endDate",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "363a2ada-d752-4ad8-b4f4-cbe540a5f08d",
+          "name": "Get athlete workouts by date range",
+          "request": {
+            "name": "Get athlete workouts by date range",
+            "description": {
+              "content": "Coach access to an athlete's workouts for a date range. Scope workouts:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                ":athleteId",
+                ":startDate",
+                ":endDate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeDescription",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "athleteId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "startDate",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "endDate",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2eaa1c5f-144c-4c71-8e10-38aca0893a7b",
+              "name": "Athlete workouts in the date range.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    ":startDate",
+                    ":endDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeDescription",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "endDate",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": 6994,\n    \"AthleteId\": 9538,\n    \"Title\": \"string\",\n    \"WorkoutType\": \"string\",\n    \"WorkoutDay\": \"2015-01-05T01:49:15.876Z\",\n    \"StartTime\": \"1998-09-29T11:53:12.639Z\",\n    \"IsItAnActivity\": false,\n    \"Distance\": 6105.230844173042,\n    \"DistancePlanned\": 4989.690539756038,\n    \"TotalTime\": 1587.6195174006302,\n    \"TotalTimePlanned\": 3385.7075587422723,\n    \"Description\": \"string\",\n    \"WorkoutFileFormats\": [\n      \"string\",\n      \"string\"\n    ],\n    \"Structure\": {},\n    \"TssActual\": 6787.226876046864,\n    \"TssPlanned\": 6584.389258854953,\n    \"IF\": 9265.923662552646,\n    \"NormalizedPower\": 1952.694106336078,\n    \"Calories\": 7189.640165382122\n  },\n  {\n    \"Id\": 4133,\n    \"AthleteId\": 4374,\n    \"Title\": \"string\",\n    \"WorkoutType\": \"string\",\n    \"WorkoutDay\": \"2012-01-30T13:47:04.928Z\",\n    \"StartTime\": \"1986-01-01T11:02:44.451Z\",\n    \"IsItAnActivity\": true,\n    \"Distance\": 4780.370787519895,\n    \"DistancePlanned\": 3121.998509554934,\n    \"TotalTime\": 9785.857766770794,\n    \"TotalTimePlanned\": 6436.153799665885,\n    \"Description\": \"string\",\n    \"WorkoutFileFormats\": [\n      \"string\",\n      \"string\"\n    ],\n    \"Structure\": {},\n    \"TssActual\": 1812.2847507087636,\n    \"TssPlanned\": 7124.517618952985,\n    \"IF\": 1133.5359211205775,\n    \"NormalizedPower\": 3394.7625810066097,\n    \"Calories\": 4385.039721256925\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0dbcf45b-63e6-4950-be50-c0adb2b75890",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    ":startDate",
+                    ":endDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeDescription",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "endDate",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b6b9ba5-95ee-4b04-9230-b035bbf6a008",
+          "name": "Get changed workouts",
+          "request": {
+            "name": "Get changed workouts",
+            "description": {
+              "content": "Retrieve the authenticated athlete's workouts changed since a date, for incremental sync. Scope workouts:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                "changed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47f0116f-cb21-4d2d-a43a-2f827901bf2f",
+              "name": "Changed workouts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "changed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": 6994,\n    \"AthleteId\": 9538,\n    \"Title\": \"string\",\n    \"WorkoutType\": \"string\",\n    \"WorkoutDay\": \"2015-01-05T01:49:15.876Z\",\n    \"StartTime\": \"1998-09-29T11:53:12.639Z\",\n    \"IsItAnActivity\": false,\n    \"Distance\": 6105.230844173042,\n    \"DistancePlanned\": 4989.690539756038,\n    \"TotalTime\": 1587.6195174006302,\n    \"TotalTimePlanned\": 3385.7075587422723,\n    \"Description\": \"string\",\n    \"WorkoutFileFormats\": [\n      \"string\",\n      \"string\"\n    ],\n    \"Structure\": {},\n    \"TssActual\": 6787.226876046864,\n    \"TssPlanned\": 6584.389258854953,\n    \"IF\": 9265.923662552646,\n    \"NormalizedPower\": 1952.694106336078,\n    \"Calories\": 7189.640165382122\n  },\n  {\n    \"Id\": 4133,\n    \"AthleteId\": 4374,\n    \"Title\": \"string\",\n    \"WorkoutType\": \"string\",\n    \"WorkoutDay\": \"2012-01-30T13:47:04.928Z\",\n    \"StartTime\": \"1986-01-01T11:02:44.451Z\",\n    \"IsItAnActivity\": true,\n    \"Distance\": 4780.370787519895,\n    \"DistancePlanned\": 3121.998509554934,\n    \"TotalTime\": 9785.857766770794,\n    \"TotalTimePlanned\": 6436.153799665885,\n    \"Description\": \"string\",\n    \"WorkoutFileFormats\": [\n      \"string\",\n      \"string\"\n    ],\n    \"Structure\": {},\n    \"TssActual\": 1812.2847507087636,\n    \"TssPlanned\": 7124.517618952985,\n    \"IF\": 1133.5359211205775,\n    \"NormalizedPower\": 3394.7625810066097,\n    \"Calories\": 4385.039721256925\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59e07faf-5978-413c-8bd6-e2bb966f7878",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "changed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e41fb83b-a909-4a4a-bb38-596d0a2d2277",
+          "name": "Get changed workouts for athlete",
+          "request": {
+            "name": "Get changed workouts for athlete",
+            "description": {
+              "content": "Coach access to an athlete's workouts changed since a date. Scope workouts:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                ":athleteId",
+                "changed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "athleteId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2bbe2c65-a8b7-4fde-9cc8-a7b4bb228eba",
+              "name": "Changed workouts for the athlete.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "changed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": 6994,\n    \"AthleteId\": 9538,\n    \"Title\": \"string\",\n    \"WorkoutType\": \"string\",\n    \"WorkoutDay\": \"2015-01-05T01:49:15.876Z\",\n    \"StartTime\": \"1998-09-29T11:53:12.639Z\",\n    \"IsItAnActivity\": false,\n    \"Distance\": 6105.230844173042,\n    \"DistancePlanned\": 4989.690539756038,\n    \"TotalTime\": 1587.6195174006302,\n    \"TotalTimePlanned\": 3385.7075587422723,\n    \"Description\": \"string\",\n    \"WorkoutFileFormats\": [\n      \"string\",\n      \"string\"\n    ],\n    \"Structure\": {},\n    \"TssActual\": 6787.226876046864,\n    \"TssPlanned\": 6584.389258854953,\n    \"IF\": 9265.923662552646,\n    \"NormalizedPower\": 1952.694106336078,\n    \"Calories\": 7189.640165382122\n  },\n  {\n    \"Id\": 4133,\n    \"AthleteId\": 4374,\n    \"Title\": \"string\",\n    \"WorkoutType\": \"string\",\n    \"WorkoutDay\": \"2012-01-30T13:47:04.928Z\",\n    \"StartTime\": \"1986-01-01T11:02:44.451Z\",\n    \"IsItAnActivity\": true,\n    \"Distance\": 4780.370787519895,\n    \"DistancePlanned\": 3121.998509554934,\n    \"TotalTime\": 9785.857766770794,\n    \"TotalTimePlanned\": 6436.153799665885,\n    \"Description\": \"string\",\n    \"WorkoutFileFormats\": [\n      \"string\",\n      \"string\"\n    ],\n    \"Structure\": {},\n    \"TssActual\": 1812.2847507087636,\n    \"TssPlanned\": 7124.517618952985,\n    \"IF\": 1133.5359211205775,\n    \"NormalizedPower\": 3394.7625810066097,\n    \"Calories\": 4385.039721256925\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8cecfb4-6ec0-4dae-b592-cb9f422043b0",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "changed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d699c716-6998-4def-b18b-04da19eb985d",
+          "name": "Get Workout of the Day",
+          "request": {
+            "name": "Get Workout of the Day",
+            "description": {
+              "content": "Retrieve the athlete's upcoming planned workouts (Workout of the Day) for a date, including WorkoutFileFormats. Scope workouts:wod.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                "wod",
+                ":date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "date",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84b13f58-ea1b-4e3d-9539-e0d84fef6c9a",
+              "name": "Workout of the Day.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "wod",
+                    ":date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": 6994,\n    \"AthleteId\": 9538,\n    \"Title\": \"string\",\n    \"WorkoutType\": \"string\",\n    \"WorkoutDay\": \"2015-01-05T01:49:15.876Z\",\n    \"StartTime\": \"1998-09-29T11:53:12.639Z\",\n    \"IsItAnActivity\": false,\n    \"Distance\": 6105.230844173042,\n    \"DistancePlanned\": 4989.690539756038,\n    \"TotalTime\": 1587.6195174006302,\n    \"TotalTimePlanned\": 3385.7075587422723,\n    \"Description\": \"string\",\n    \"WorkoutFileFormats\": [\n      \"string\",\n      \"string\"\n    ],\n    \"Structure\": {},\n    \"TssActual\": 6787.226876046864,\n    \"TssPlanned\": 6584.389258854953,\n    \"IF\": 9265.923662552646,\n    \"NormalizedPower\": 1952.694106336078,\n    \"Calories\": 7189.640165382122\n  },\n  {\n    \"Id\": 4133,\n    \"AthleteId\": 4374,\n    \"Title\": \"string\",\n    \"WorkoutType\": \"string\",\n    \"WorkoutDay\": \"2012-01-30T13:47:04.928Z\",\n    \"StartTime\": \"1986-01-01T11:02:44.451Z\",\n    \"IsItAnActivity\": true,\n    \"Distance\": 4780.370787519895,\n    \"DistancePlanned\": 3121.998509554934,\n    \"TotalTime\": 9785.857766770794,\n    \"TotalTimePlanned\": 6436.153799665885,\n    \"Description\": \"string\",\n    \"WorkoutFileFormats\": [\n      \"string\",\n      \"string\"\n    ],\n    \"Structure\": {},\n    \"TssActual\": 1812.2847507087636,\n    \"TssPlanned\": 7124.517618952985,\n    \"IF\": 1133.5359211205775,\n    \"NormalizedPower\": 3394.7625810066097,\n    \"Calories\": 4385.039721256925\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7028c78b-426b-4464-9b66-603e73046cb6",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "wod",
+                    ":date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cce13e26-f714-474d-9fdc-f104c66c32a7",
+          "name": "Get structured workout file",
+          "request": {
+            "name": "Get structured workout file",
+            "description": {
+              "content": "Download the structured workout file for a planned workout in fit, erg, mrc, zwo, or json format. Scope workouts:wod.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                "wod",
+                "file",
+                ":workoutId",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "workoutId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "07629669-48e6-4201-bc20-01d5da6eddef",
+              "name": "The structured workout file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "wod",
+                    "file",
+                    ":workoutId",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "workoutId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c8ab955d-de39-411b-97d5-4c3d41cfcbc5",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "wod",
+                    "file",
+                    ":workoutId",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "workoutId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04440c53-193d-43d9-9521-0bbb5509750a",
+          "name": "Create planned workout",
+          "request": {
+            "name": "Create planned workout",
+            "description": {
+              "content": "Create a planned workout. Coach (allowed to plan for the athlete) or a premium athlete; basic athletes may only create workouts for today or in the past. Scope workouts:plan.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                "plan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Title\": \"<string>\",\n  \"WorkoutType\": \"<string>\",\n  \"WorkoutDay\": \"<dateTime>\",\n  \"StartTime\": \"<dateTime>\",\n  \"IsItAnActivity\": \"<boolean>\",\n  \"Distance\": \"<number>\",\n  \"DistancePlanned\": \"<number>\",\n  \"TotalTime\": \"<number>\",\n  \"TotalTimePlanned\": \"<number>\",\n  \"Description\": \"<string>\",\n  \"WorkoutFileFormats\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"Structure\": \"<object>\",\n  \"TssActual\": \"<number>\",\n  \"TssPlanned\": \"<number>\",\n  \"IF\": \"<number>\",\n  \"NormalizedPower\": \"<number>\",\n  \"Calories\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "abc5f6c5-c62a-428f-854c-ffdcfb1ff5a3",
+              "name": "The created workout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "plan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Title\": \"<string>\",\n  \"WorkoutType\": \"<string>\",\n  \"WorkoutDay\": \"<dateTime>\",\n  \"StartTime\": \"<dateTime>\",\n  \"IsItAnActivity\": \"<boolean>\",\n  \"Distance\": \"<number>\",\n  \"DistancePlanned\": \"<number>\",\n  \"TotalTime\": \"<number>\",\n  \"TotalTimePlanned\": \"<number>\",\n  \"Description\": \"<string>\",\n  \"WorkoutFileFormats\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"Structure\": \"<object>\",\n  \"TssActual\": \"<number>\",\n  \"TssPlanned\": \"<number>\",\n  \"IF\": \"<number>\",\n  \"NormalizedPower\": \"<number>\",\n  \"Calories\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Title\": \"<string>\",\n  \"WorkoutType\": \"<string>\",\n  \"WorkoutDay\": \"<dateTime>\",\n  \"StartTime\": \"<dateTime>\",\n  \"IsItAnActivity\": \"<boolean>\",\n  \"Distance\": \"<number>\",\n  \"DistancePlanned\": \"<number>\",\n  \"TotalTime\": \"<number>\",\n  \"TotalTimePlanned\": \"<number>\",\n  \"Description\": \"<string>\",\n  \"WorkoutFileFormats\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"Structure\": \"<object>\",\n  \"TssActual\": \"<number>\",\n  \"TssPlanned\": \"<number>\",\n  \"IF\": \"<number>\",\n  \"NormalizedPower\": \"<number>\",\n  \"Calories\": \"<number>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f22e4f3-039e-4086-b624-2724d1e34f4f",
+              "name": "One or more required fields are missing or incorrect.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "plan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Title\": \"<string>\",\n  \"WorkoutType\": \"<string>\",\n  \"WorkoutDay\": \"<dateTime>\",\n  \"StartTime\": \"<dateTime>\",\n  \"IsItAnActivity\": \"<boolean>\",\n  \"Distance\": \"<number>\",\n  \"DistancePlanned\": \"<number>\",\n  \"TotalTime\": \"<number>\",\n  \"TotalTimePlanned\": \"<number>\",\n  \"Description\": \"<string>\",\n  \"WorkoutFileFormats\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"Structure\": \"<object>\",\n  \"TssActual\": \"<number>\",\n  \"TssPlanned\": \"<number>\",\n  \"IF\": \"<number>\",\n  \"NormalizedPower\": \"<number>\",\n  \"Calories\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c6691f97-e203-4a16-b217-9ede99c6488d",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "plan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Title\": \"<string>\",\n  \"WorkoutType\": \"<string>\",\n  \"WorkoutDay\": \"<dateTime>\",\n  \"StartTime\": \"<dateTime>\",\n  \"IsItAnActivity\": \"<boolean>\",\n  \"Distance\": \"<number>\",\n  \"DistancePlanned\": \"<number>\",\n  \"TotalTime\": \"<number>\",\n  \"TotalTimePlanned\": \"<number>\",\n  \"Description\": \"<string>\",\n  \"WorkoutFileFormats\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"Structure\": \"<object>\",\n  \"TssActual\": \"<number>\",\n  \"TssPlanned\": \"<number>\",\n  \"IF\": \"<number>\",\n  \"NormalizedPower\": \"<number>\",\n  \"Calories\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e3aa4dd-c7a9-4fc1-a444-03d3d719f63c",
+          "name": "Update planned workout",
+          "request": {
+            "name": "Update planned workout",
+            "description": {
+              "content": "Update a planned workout by id. Scope workouts:plan.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                "plan",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Title\": \"<string>\",\n  \"WorkoutType\": \"<string>\",\n  \"WorkoutDay\": \"<dateTime>\",\n  \"StartTime\": \"<dateTime>\",\n  \"IsItAnActivity\": \"<boolean>\",\n  \"Distance\": \"<number>\",\n  \"DistancePlanned\": \"<number>\",\n  \"TotalTime\": \"<number>\",\n  \"TotalTimePlanned\": \"<number>\",\n  \"Description\": \"<string>\",\n  \"WorkoutFileFormats\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"Structure\": \"<object>\",\n  \"TssActual\": \"<number>\",\n  \"TssPlanned\": \"<number>\",\n  \"IF\": \"<number>\",\n  \"NormalizedPower\": \"<number>\",\n  \"Calories\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2cd50005-ef7d-4350-a72e-a1c5f60db334",
+              "name": "The updated workout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "plan",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Title\": \"<string>\",\n  \"WorkoutType\": \"<string>\",\n  \"WorkoutDay\": \"<dateTime>\",\n  \"StartTime\": \"<dateTime>\",\n  \"IsItAnActivity\": \"<boolean>\",\n  \"Distance\": \"<number>\",\n  \"DistancePlanned\": \"<number>\",\n  \"TotalTime\": \"<number>\",\n  \"TotalTimePlanned\": \"<number>\",\n  \"Description\": \"<string>\",\n  \"WorkoutFileFormats\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"Structure\": \"<object>\",\n  \"TssActual\": \"<number>\",\n  \"TssPlanned\": \"<number>\",\n  \"IF\": \"<number>\",\n  \"NormalizedPower\": \"<number>\",\n  \"Calories\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Title\": \"<string>\",\n  \"WorkoutType\": \"<string>\",\n  \"WorkoutDay\": \"<dateTime>\",\n  \"StartTime\": \"<dateTime>\",\n  \"IsItAnActivity\": \"<boolean>\",\n  \"Distance\": \"<number>\",\n  \"DistancePlanned\": \"<number>\",\n  \"TotalTime\": \"<number>\",\n  \"TotalTimePlanned\": \"<number>\",\n  \"Description\": \"<string>\",\n  \"WorkoutFileFormats\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"Structure\": \"<object>\",\n  \"TssActual\": \"<number>\",\n  \"TssPlanned\": \"<number>\",\n  \"IF\": \"<number>\",\n  \"NormalizedPower\": \"<number>\",\n  \"Calories\": \"<number>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c10136a-1da2-494a-8f0e-ef4cc725d3cf",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "plan",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Title\": \"<string>\",\n  \"WorkoutType\": \"<string>\",\n  \"WorkoutDay\": \"<dateTime>\",\n  \"StartTime\": \"<dateTime>\",\n  \"IsItAnActivity\": \"<boolean>\",\n  \"Distance\": \"<number>\",\n  \"DistancePlanned\": \"<number>\",\n  \"TotalTime\": \"<number>\",\n  \"TotalTimePlanned\": \"<number>\",\n  \"Description\": \"<string>\",\n  \"WorkoutFileFormats\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"Structure\": \"<object>\",\n  \"TssActual\": \"<number>\",\n  \"TssPlanned\": \"<number>\",\n  \"IF\": \"<number>\",\n  \"NormalizedPower\": \"<number>\",\n  \"Calories\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ec16f3c-3c44-4cc6-9f9e-467037b8b89e",
+          "name": "Get workout by id",
+          "request": {
+            "name": "Get workout by id",
+            "description": {
+              "content": "Retrieve one of the authenticated athlete's workouts by id. Scope workouts:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                "id",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeDescription",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "265b86be-a59b-4346-83d4-baa6a37e9c28",
+              "name": "The workout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "id",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeDescription",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Title\": \"<string>\",\n  \"WorkoutType\": \"<string>\",\n  \"WorkoutDay\": \"<dateTime>\",\n  \"StartTime\": \"<dateTime>\",\n  \"IsItAnActivity\": \"<boolean>\",\n  \"Distance\": \"<number>\",\n  \"DistancePlanned\": \"<number>\",\n  \"TotalTime\": \"<number>\",\n  \"TotalTimePlanned\": \"<number>\",\n  \"Description\": \"<string>\",\n  \"WorkoutFileFormats\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"Structure\": \"<object>\",\n  \"TssActual\": \"<number>\",\n  \"TssPlanned\": \"<number>\",\n  \"IF\": \"<number>\",\n  \"NormalizedPower\": \"<number>\",\n  \"Calories\": \"<number>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8111a6d0-ac90-4c71-8441-d68080a42ba1",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "id",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeDescription",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d775bd1-96ab-4bd2-b7de-9db00d74da02",
+          "name": "Delete workout by id",
+          "request": {
+            "name": "Delete workout by id",
+            "description": {
+              "content": "Delete one of the authenticated athlete's workouts by id. Scope workouts:plan.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                "id",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "01e791d9-ef75-4fb8-9126-18eeee89b615",
+              "name": "Deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "id",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "297e853a-0003-4a4d-878b-ca2c83671bea",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "id",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6373ee89-5bcc-46eb-a155-398719145715",
+          "name": "Get athlete workout by id",
+          "request": {
+            "name": "Get athlete workout by id",
+            "description": {
+              "content": "Coach access to an athlete's workout by id. Scope workouts:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                ":athleteId",
+                "id",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeDescription",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "athleteId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d8d65ebb-d7bf-48c3-a497-c9addb5a47a7",
+              "name": "The workout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "id",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeDescription",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Title\": \"<string>\",\n  \"WorkoutType\": \"<string>\",\n  \"WorkoutDay\": \"<dateTime>\",\n  \"StartTime\": \"<dateTime>\",\n  \"IsItAnActivity\": \"<boolean>\",\n  \"Distance\": \"<number>\",\n  \"DistancePlanned\": \"<number>\",\n  \"TotalTime\": \"<number>\",\n  \"TotalTimePlanned\": \"<number>\",\n  \"Description\": \"<string>\",\n  \"WorkoutFileFormats\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"Structure\": \"<object>\",\n  \"TssActual\": \"<number>\",\n  \"TssPlanned\": \"<number>\",\n  \"IF\": \"<number>\",\n  \"NormalizedPower\": \"<number>\",\n  \"Calories\": \"<number>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ace7962-a6fc-48e6-9ca9-c233b2e37bd7",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "id",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeDescription",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4c2bc38-6259-4fb6-baa4-cb5ec2dee8b4",
+          "name": "Delete athlete workout by id",
+          "request": {
+            "name": "Delete athlete workout by id",
+            "description": {
+              "content": "Coach access to delete an athlete's workout by id. Scope workouts:plan.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                ":athleteId",
+                "id",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "athleteId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e872fda6-6277-4812-a9f5-657e64c14914",
+              "name": "Deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "id",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f800dc68-0b37-450f-bbd2-e2e6d631233c",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "id",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "143c4739-d18a-48a3-8c57-647908994f5f",
+          "name": "Get workout mean-max data",
+          "request": {
+            "name": "Get workout mean-max data",
+            "description": {
+              "content": "Mean-max power/pace/HR curves for a completed workout. Premium athlete required (403 for basic). Scope workouts:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                "id",
+                ":id",
+                "meanmaxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca524838-4110-4d35-bcbf-88ed6cbc8b43",
+              "name": "Mean-max data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "id",
+                    ":id",
+                    "meanmaxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f01de31d-36c0-47a2-b30a-32baa5144a5f",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "id",
+                    ":id",
+                    "meanmaxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aefa1311-dc0f-450c-a995-376f4d603187",
+              "name": "Refused - e.g. accessing an athlete no longer attached to the coach, or premium data for a basic athlete.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "id",
+                    ":id",
+                    "meanmaxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df42c267-7188-411b-97f4-14a6bc3b7d26",
+          "name": "Get athlete workout mean-max data",
+          "request": {
+            "name": "Get athlete workout mean-max data",
+            "description": {
+              "content": "Coach access to mean-max data for an athlete's completed workout. Premium required. Scope workouts:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                ":athleteId",
+                "id",
+                ":id",
+                "meanmaxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "athleteId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b754fda-bfb3-48cd-9db4-a6258147c3d1",
+              "name": "Mean-max data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "id",
+                    ":id",
+                    "meanmaxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "834f19a1-d8ac-4915-b86c-cec930686e75",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "id",
+                    ":id",
+                    "meanmaxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "98013bcd-5812-4cc4-aa6b-b7dae0fe1cc1",
+              "name": "Refused - e.g. accessing an athlete no longer attached to the coach, or premium data for a basic athlete.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "id",
+                    ":id",
+                    "meanmaxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c34e302-7382-49aa-b71d-63f6448fe709",
+          "name": "Get workout time in zones",
+          "request": {
+            "name": "Get workout time in zones",
+            "description": {
+              "content": "Time-in-zones for a completed workout. Premium athlete required. Scope workouts:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                "id",
+                ":id",
+                "timeinzones"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3bd527b6-fbae-41c2-bd5e-3663ef91dbf2",
+              "name": "Time-in-zones data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "id",
+                    ":id",
+                    "timeinzones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "325ba518-7dfe-4eee-8430-0e35fb598451",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "id",
+                    ":id",
+                    "timeinzones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "35c08ddb-9940-43be-b354-2221686cc20a",
+              "name": "Refused - e.g. accessing an athlete no longer attached to the coach, or premium data for a basic athlete.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "id",
+                    ":id",
+                    "timeinzones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23ec9319-0e78-4353-af4e-fe1b39f06089",
+          "name": "Get athlete workout time in zones",
+          "request": {
+            "name": "Get athlete workout time in zones",
+            "description": {
+              "content": "Coach access to time-in-zones for an athlete's completed workout. Premium required. Scope workouts:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                ":athleteId",
+                "id",
+                ":id",
+                "timeinzones"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "athleteId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54c51b3b-4556-4593-b8c1-32cc89bf71fe",
+              "name": "Time-in-zones data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "id",
+                    ":id",
+                    "timeinzones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "02458601-ce8e-459c-9e7b-1f645051bd50",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "id",
+                    ":id",
+                    "timeinzones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2bc98021-e754-4b11-8976-81b0e8245060",
+              "name": "Refused - e.g. accessing an athlete no longer attached to the coach, or premium data for a basic athlete.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "id",
+                    ":id",
+                    "timeinzones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aaa41777-662d-4e79-a10b-4cc0f8e2ea38",
+          "name": "Get workout details",
+          "request": {
+            "name": "Get workout details",
+            "description": {
+              "content": "Sample-level detail data for a completed workout. Requires a premium athlete (403), a completed workout (204), and an uploaded workout file (204). Scope workouts:details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                "id",
+                ":id",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8a096e51-2a96-48f6-bb8c-e0dfba44dfba",
+              "name": "Workout detail sample data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "id",
+                    ":id",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ce4a4451-b85a-4ae8-bfa4-ad18a99e661d",
+              "name": "No detail data (workout not completed or no file uploaded).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "id",
+                    ":id",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bddf2e2d-a145-4fed-af41-036a5aaf64e1",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "id",
+                    ":id",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fa5c4606-ebe9-4250-8e0c-56c4e40db38c",
+              "name": "Refused - e.g. accessing an athlete no longer attached to the coach, or premium data for a basic athlete.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    "id",
+                    ":id",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d23ae2a-db34-4d1e-867d-ab3d749e7601",
+          "name": "Get athlete workout details",
+          "request": {
+            "name": "Get athlete workout details",
+            "description": {
+              "content": "Coach access to sample-level detail data for an athlete's completed workout. Premium required. Scope workouts:details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                ":athleteId",
+                "id",
+                ":id",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "athleteId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47e232e9-bcf7-438d-a957-31054084eb31",
+              "name": "Workout detail sample data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "id",
+                    ":id",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bf9216c7-8417-4ebd-9d0e-02d24ef05cf2",
+              "name": "No detail data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "id",
+                    ":id",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "98b09583-8030-4dd5-879c-226aca72094a",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "id",
+                    ":id",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d66d4b39-ec25-4516-912c-2242fe5cd8d1",
+              "name": "Refused - e.g. accessing an athlete no longer attached to the coach, or premium data for a basic athlete.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "id",
+                    ":id",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18e836f4-b927-4489-80a2-4255e0f788aa",
+          "name": "Create workout comment",
+          "request": {
+            "name": "Create workout comment",
+            "description": {
+              "content": "Post a coach comment to an athlete's workout. Premium athlete required. Scope workouts:details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "workouts",
+                ":athleteId",
+                "id",
+                ":workoutId",
+                "comment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "athleteId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "workoutId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "89ef070a-896e-4e3a-93fe-355ac184c476",
+              "name": "The created comment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "id",
+                    ":workoutId",
+                    "comment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "workoutId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5a484fdc-d5be-4bb0-92e3-75473eda7a1d",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "id",
+                    ":workoutId",
+                    "comment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "workoutId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b2c41a84-fa44-4b59-a2f8-764e8e51ad8f",
+              "name": "Refused - e.g. accessing an athlete no longer attached to the coach, or premium data for a basic athlete.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "workouts",
+                    ":athleteId",
+                    "id",
+                    ":workoutId",
+                    "comment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "workoutId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2dd22e5-7073-47c0-8a77-b4f79b085d8b",
+          "name": "Get strength workouts",
+          "request": {
+            "name": "Get strength workouts",
+            "description": {
+              "content": "Retrieve an athlete's strength workouts. Scope workouts:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "athletes",
+                ":athleteId",
+                "strength-workouts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "athleteId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27a50f86-ea30-4ddb-abf5-45ec9345dbdb",
+              "name": "Strength workouts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "athletes",
+                    ":athleteId",
+                    "strength-workouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": 676,\n    \"AthleteId\": 2880,\n    \"WorkoutDay\": \"1949-11-01T19:17:20.272Z\",\n    \"Title\": \"string\",\n    \"Exercises\": [\n      {\n        \"Name\": \"string\",\n        \"Sets\": 9805,\n        \"Reps\": 6086,\n        \"Load\": 5693.505182240627\n      },\n      {\n        \"Name\": \"string\",\n        \"Sets\": 6454,\n        \"Reps\": 2786,\n        \"Load\": 4442.342816880264\n      }\n    ]\n  },\n  {\n    \"Id\": 7645,\n    \"AthleteId\": 3268,\n    \"WorkoutDay\": \"1959-02-18T04:34:22.501Z\",\n    \"Title\": \"string\",\n    \"Exercises\": [\n      {\n        \"Name\": \"string\",\n        \"Sets\": 403,\n        \"Reps\": 2705,\n        \"Load\": 500.3835672606671\n      },\n      {\n        \"Name\": \"string\",\n        \"Sets\": 6564,\n        \"Reps\": 2458,\n        \"Load\": 5547.668262766404\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb0559ae-abf6-4a1b-ac40-397a632c411c",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "athletes",
+                    ":athleteId",
+                    "strength-workouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trainingpeaks.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "athlete:profile coach:athletes workouts:read workouts:plan workouts:wod workouts:details metrics:read metrics:write nutrition:read nutrition:write events:read events:write routes:read routes:write file:write webhook:read-subscriptions webhook:write-subscriptions"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://oauth.trainingpeaks.com/oauth/token"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://oauth.trainingpeaks.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://oauth.trainingpeaks.com/OAuth/Authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f9fbaaad-3339-429d-93e1-1714f0217cf0",
+    "name": "TrainingPeaks Partners Athlete Workouts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The TrainingPeaks Partners API (Public API) lets approved third-party applications read and write TrainingPeaks data on behalf of a user - athlete profiles, planned and completed workouts, structured workout files, wellness metrics, nutrition, events, routes, coach relationships, activity file uploads, and workout webhooks. It is a JSON over HTTPS REST API secured with OAuth 2.0 (authorization_code and refresh_token grants).\n\nACCESS MODEL: Access is partner-gated. Applications must request credentials at https://api.trainingpeaks.com/request-access and are individually evaluated; TrainingPeaks states it is not accepting API requests for personal use. Each application is granted a fixed set of OAuth scopes; requesting more scopes than granted causes the token exchange to fail. The full API surface is publicly documented at https://github.com/TrainingPeaks/PartnersAPI/wiki, from which this specification was authored.\n\nENDPOINT PROVENANCE: All paths, HTTP methods, and OAuth scopes in this document are CONFIRMED against the public PartnersAPI wiki API-Endpoints page. Request and response SCHEMAS are MODELED from the wiki object pages and examples, because the live reference responses require partner credentials and an authorized user; treat the property lists as representative rather than exhaustive (marked with x-endpoints-modeled below).\n\nContact Support:\n Name: TrainingPeaks API Partnerships Team",
+      "type": "text/plain"
+    }
+  }
+}

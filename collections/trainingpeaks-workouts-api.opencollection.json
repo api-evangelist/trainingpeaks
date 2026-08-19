@@ -1,0 +1,470 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TrainingPeaks Partners Athlete Workouts API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://oauth.trainingpeaks.com/OAuth/Authorize",
+      "accessTokenUrl": "https://oauth.trainingpeaks.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workouts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get workouts by date range",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/workouts/:startDate/:endDate",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "includeDescription",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve the authenticated athlete's planned and completed workouts for a date range. Add includeDescription=true to include the description field. Scope workouts:read."
+        },
+        {
+          "info": {
+            "name": "Get athlete workouts by date range",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/workouts/:athleteId/:startDate/:endDate",
+            "params": [
+              {
+                "name": "athleteId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "includeDescription",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Coach access to an athlete's workouts for a date range. Scope workouts:read."
+        },
+        {
+          "info": {
+            "name": "Get changed workouts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/workouts/changed",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve the authenticated athlete's workouts changed since a date, for incremental sync. Scope workouts:read."
+        },
+        {
+          "info": {
+            "name": "Get changed workouts for athlete",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/workouts/:athleteId/changed",
+            "params": [
+              {
+                "name": "athleteId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Coach access to an athlete's workouts changed since a date. Scope workouts:read."
+        },
+        {
+          "info": {
+            "name": "Get Workout of the Day",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/workouts/wod/:date",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the athlete's upcoming planned workouts (Workout of the Day) for a date, including WorkoutFileFormats. Scope workouts:wod."
+        },
+        {
+          "info": {
+            "name": "Get structured workout file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/workouts/wod/file/:workoutId/",
+            "params": [
+              {
+                "name": "workoutId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Download the structured workout file for a planned workout in fit, erg, mrc, zwo, or json format. Scope workouts:wod."
+        },
+        {
+          "info": {
+            "name": "Create planned workout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainingpeaks.com/v2/workouts/plan",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a planned workout. Coach (allowed to plan for the athlete) or a premium athlete; basic athletes may only create workouts for today or in the past. Scope workouts:plan."
+        },
+        {
+          "info": {
+            "name": "Update planned workout",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.trainingpeaks.com/v2/workouts/plan/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a planned workout by id. Scope workouts:plan."
+        },
+        {
+          "info": {
+            "name": "Get workout by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/workouts/id/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "includeDescription",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve one of the authenticated athlete's workouts by id. Scope workouts:read."
+        },
+        {
+          "info": {
+            "name": "Delete workout by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.trainingpeaks.com/v2/workouts/id/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete one of the authenticated athlete's workouts by id. Scope workouts:plan."
+        },
+        {
+          "info": {
+            "name": "Get athlete workout by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/workouts/:athleteId/id/:id",
+            "params": [
+              {
+                "name": "athleteId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "includeDescription",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Coach access to an athlete's workout by id. Scope workouts:read."
+        },
+        {
+          "info": {
+            "name": "Delete athlete workout by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.trainingpeaks.com/v2/workouts/:athleteId/id/:id",
+            "params": [
+              {
+                "name": "athleteId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Coach access to delete an athlete's workout by id. Scope workouts:plan."
+        },
+        {
+          "info": {
+            "name": "Get workout mean-max data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/workouts/id/:id/meanmaxes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mean-max power/pace/HR curves for a completed workout. Premium athlete required (403 for basic). Scope workouts:read."
+        },
+        {
+          "info": {
+            "name": "Get athlete workout mean-max data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/workouts/:athleteId/id/:id/meanmaxes",
+            "params": [
+              {
+                "name": "athleteId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Coach access to mean-max data for an athlete's completed workout. Premium required. Scope workouts:read."
+        },
+        {
+          "info": {
+            "name": "Get workout time in zones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/workouts/id/:id/timeinzones",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Time-in-zones for a completed workout. Premium athlete required. Scope workouts:read."
+        },
+        {
+          "info": {
+            "name": "Get athlete workout time in zones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/workouts/:athleteId/id/:id/timeinzones",
+            "params": [
+              {
+                "name": "athleteId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Coach access to time-in-zones for an athlete's completed workout. Premium required. Scope workouts:read."
+        },
+        {
+          "info": {
+            "name": "Get workout details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/workouts/id/:id/details",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Sample-level detail data for a completed workout. Requires a premium athlete (403), a completed workout (204), and an uploaded workout file (204). Scope workouts:details."
+        },
+        {
+          "info": {
+            "name": "Get athlete workout details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/workouts/:athleteId/id/:id/details",
+            "params": [
+              {
+                "name": "athleteId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Coach access to sample-level detail data for an athlete's completed workout. Premium required. Scope workouts:details."
+        },
+        {
+          "info": {
+            "name": "Create workout comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainingpeaks.com/v2/workouts/:athleteId/id/:workoutId/comment",
+            "params": [
+              {
+                "name": "athleteId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "workoutId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Post a coach comment to an athlete's workout. Premium athlete required. Scope workouts:details."
+        },
+        {
+          "info": {
+            "name": "Get strength workouts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/athletes/:athleteId/strength-workouts",
+            "params": [
+              {
+                "name": "athleteId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve an athlete's strength workouts. Scope workouts:read."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

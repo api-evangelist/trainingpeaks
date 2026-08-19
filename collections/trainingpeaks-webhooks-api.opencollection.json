@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TrainingPeaks Partners Athlete Webhooks API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://oauth.trainingpeaks.com/OAuth/Authorize",
+      "accessTokenUrl": "https://oauth.trainingpeaks.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhook subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v1/webhook/subscriptions"
+          },
+          "docs": "List webhook subscriptions. Early Access. Scope webhook:read-subscriptions."
+        },
+        {
+          "info": {
+            "name": "Create webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainingpeaks.com/v1/webhook/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a webhook subscription for an athlete. EventType is one of workout-created, workout-updated, workout-deleted. Early Access. Scope webhook:write-subscriptions."
+        },
+        {
+          "info": {
+            "name": "Update webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.trainingpeaks.com/v1/webhook/subscriptions/:subscriptionId",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a webhook subscription. Early Access. Scope webhook:write-subscriptions."
+        },
+        {
+          "info": {
+            "name": "Delete webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.trainingpeaks.com/v1/webhook/subscriptions/:subscriptionId",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a webhook subscription. Early Access. Scope webhook:write-subscriptions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

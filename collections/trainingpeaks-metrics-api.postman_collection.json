@@ -1,0 +1,889 @@
+{
+  "item": [
+    {
+      "id": "7a4e4881-bb6b-48a7-bcf7-c0defe584ce8",
+      "name": "Metrics",
+      "description": {
+        "content": "Athlete wellness and body metrics.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "38e601fa-76d3-4ba1-bfb1-202855bad3b0",
+          "name": "Get metric by id",
+          "request": {
+            "name": "Get metric by id",
+            "description": {
+              "content": "Retrieve a single metric entry by id. Scope metrics:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "metrics",
+                ":metricId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "metricId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7e02b51e-7de7-472f-9130-f2fa4e07ae30",
+              "name": "The metric entry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "metrics",
+                    ":metricId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "metricId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"string\",\n  \"AthleteId\": 2853,\n  \"Timestamp\": \"1953-06-28T09:59:10.824Z\",\n  \"WeightInKilograms\": 426.0492767324464,\n  \"RestingHeartRate\": 3210,\n  \"Hrv\": 3288.144825631213,\n  \"SleepHours\": 5730.489709329092,\n  \"Fatigue\": 8043,\n  \"Stress\": 6472,\n  \"Soreness\": 6731\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9ee8ba8-624d-4d6e-86ed-49c9398e0b40",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "metrics",
+                    ":metricId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "metricId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ade343b7-16f6-4d43-ab20-c675826f25bb",
+          "name": "Get metrics by date range",
+          "request": {
+            "name": "Get metrics by date range",
+            "description": {
+              "content": "Retrieve the authenticated athlete's metrics for a date range. Premium athlete required (403 for basic). Scope metrics:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "metrics",
+                ":startDate",
+                ":endDate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "startDate",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "endDate",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "53c6bff2-b5ce-420f-a5a3-b2ba0ac116a8",
+              "name": "Metrics in the date range.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "metrics",
+                    ":startDate",
+                    ":endDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "endDate",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"string\",\n    \"AthleteId\": 2568,\n    \"Timestamp\": \"1973-06-14T20:37:36.183Z\",\n    \"WeightInKilograms\": 1021.6975561102525,\n    \"RestingHeartRate\": 3849,\n    \"Hrv\": 5693.785442061564,\n    \"SleepHours\": 9701.510420197243,\n    \"Fatigue\": 7411,\n    \"Stress\": 7161,\n    \"Soreness\": 3741\n  },\n  {\n    \"Id\": \"string\",\n    \"AthleteId\": 3387,\n    \"Timestamp\": \"1965-02-07T04:13:44.948Z\",\n    \"WeightInKilograms\": 3223.695612842503,\n    \"RestingHeartRate\": 4095,\n    \"Hrv\": 9872.871279024506,\n    \"SleepHours\": 274.4682825650002,\n    \"Fatigue\": 4337,\n    \"Stress\": 3586,\n    \"Soreness\": 4262\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed561f64-050b-4827-a1f1-b2a594355184",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "metrics",
+                    ":startDate",
+                    ":endDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "endDate",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "01f02c6f-7989-497a-ad72-38dbef7e0109",
+              "name": "Refused - e.g. accessing an athlete no longer attached to the coach, or premium data for a basic athlete.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "metrics",
+                    ":startDate",
+                    ":endDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "endDate",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5143be7f-5de2-41d0-8993-995c7729bd72",
+          "name": "Get athlete metrics by date range",
+          "request": {
+            "name": "Get athlete metrics by date range",
+            "description": {
+              "content": "Coach access to an athlete's metrics for a date range. Premium athlete required (403 for basic). Scope metrics:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "metrics",
+                ":athleteId",
+                ":startDate",
+                ":endDate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "athleteId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "startDate",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "endDate",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85169ad7-ad67-409d-aeb4-98f2a0aa543d",
+              "name": "Athlete metrics in the date range.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "metrics",
+                    ":athleteId",
+                    ":startDate",
+                    ":endDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "endDate",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": \"string\",\n    \"AthleteId\": 2568,\n    \"Timestamp\": \"1973-06-14T20:37:36.183Z\",\n    \"WeightInKilograms\": 1021.6975561102525,\n    \"RestingHeartRate\": 3849,\n    \"Hrv\": 5693.785442061564,\n    \"SleepHours\": 9701.510420197243,\n    \"Fatigue\": 7411,\n    \"Stress\": 7161,\n    \"Soreness\": 3741\n  },\n  {\n    \"Id\": \"string\",\n    \"AthleteId\": 3387,\n    \"Timestamp\": \"1965-02-07T04:13:44.948Z\",\n    \"WeightInKilograms\": 3223.695612842503,\n    \"RestingHeartRate\": 4095,\n    \"Hrv\": 9872.871279024506,\n    \"SleepHours\": 274.4682825650002,\n    \"Fatigue\": 4337,\n    \"Stress\": 3586,\n    \"Soreness\": 4262\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8069605-c94f-4637-a9ee-ffa52f75ab15",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "metrics",
+                    ":athleteId",
+                    ":startDate",
+                    ":endDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "endDate",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "721e408b-d443-4715-a49a-d3e9f3238f12",
+              "name": "Refused - e.g. accessing an athlete no longer attached to the coach, or premium data for a basic athlete.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "metrics",
+                    ":athleteId",
+                    ":startDate",
+                    ":endDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "athleteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "startDate",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "endDate",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1585ec9c-8538-4072-bdb7-c2253677db2f",
+          "name": "Create metric",
+          "request": {
+            "name": "Create metric",
+            "description": {
+              "content": "Create a new athlete metric entry. Scope metrics:write.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Id\": \"<string>\",\n  \"AthleteId\": \"<long>\",\n  \"Timestamp\": \"<dateTime>\",\n  \"WeightInKilograms\": \"<number>\",\n  \"RestingHeartRate\": \"<integer>\",\n  \"Hrv\": \"<number>\",\n  \"SleepHours\": \"<number>\",\n  \"Fatigue\": \"<integer>\",\n  \"Stress\": \"<integer>\",\n  \"Soreness\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f08892ba-7fbc-4bc8-8cd0-eae393fe1ffa",
+              "name": "The created metric.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"<string>\",\n  \"AthleteId\": \"<long>\",\n  \"Timestamp\": \"<dateTime>\",\n  \"WeightInKilograms\": \"<number>\",\n  \"RestingHeartRate\": \"<integer>\",\n  \"Hrv\": \"<number>\",\n  \"SleepHours\": \"<number>\",\n  \"Fatigue\": \"<integer>\",\n  \"Stress\": \"<integer>\",\n  \"Soreness\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"<string>\",\n  \"AthleteId\": \"<long>\",\n  \"Timestamp\": \"<dateTime>\",\n  \"WeightInKilograms\": \"<number>\",\n  \"RestingHeartRate\": \"<integer>\",\n  \"Hrv\": \"<number>\",\n  \"SleepHours\": \"<number>\",\n  \"Fatigue\": \"<integer>\",\n  \"Stress\": \"<integer>\",\n  \"Soreness\": \"<integer>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74bda913-8d64-4e3f-8e96-ec3c23c83c59",
+              "name": "One or more required fields are missing or incorrect.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"<string>\",\n  \"AthleteId\": \"<long>\",\n  \"Timestamp\": \"<dateTime>\",\n  \"WeightInKilograms\": \"<number>\",\n  \"RestingHeartRate\": \"<integer>\",\n  \"Hrv\": \"<number>\",\n  \"SleepHours\": \"<number>\",\n  \"Fatigue\": \"<integer>\",\n  \"Stress\": \"<integer>\",\n  \"Soreness\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "73fa6800-fd32-44f7-98a1-50c2a898fd01",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"<string>\",\n  \"AthleteId\": \"<long>\",\n  \"Timestamp\": \"<dateTime>\",\n  \"WeightInKilograms\": \"<number>\",\n  \"RestingHeartRate\": \"<integer>\",\n  \"Hrv\": \"<number>\",\n  \"SleepHours\": \"<number>\",\n  \"Fatigue\": \"<integer>\",\n  \"Stress\": \"<integer>\",\n  \"Soreness\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trainingpeaks.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "athlete:profile coach:athletes workouts:read workouts:plan workouts:wod workouts:details metrics:read metrics:write nutrition:read nutrition:write events:read events:write routes:read routes:write file:write webhook:read-subscriptions webhook:write-subscriptions"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://oauth.trainingpeaks.com/oauth/token"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://oauth.trainingpeaks.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://oauth.trainingpeaks.com/OAuth/Authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9df1e456-28d5-4081-abb4-48d3bfcf6b40",
+    "name": "TrainingPeaks Partners Athlete Metrics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The TrainingPeaks Partners API (Public API) lets approved third-party applications read and write TrainingPeaks data on behalf of a user - athlete profiles, planned and completed workouts, structured workout files, wellness metrics, nutrition, events, routes, coach relationships, activity file uploads, and workout webhooks. It is a JSON over HTTPS REST API secured with OAuth 2.0 (authorization_code and refresh_token grants).\n\nACCESS MODEL: Access is partner-gated. Applications must request credentials at https://api.trainingpeaks.com/request-access and are individually evaluated; TrainingPeaks states it is not accepting API requests for personal use. Each application is granted a fixed set of OAuth scopes; requesting more scopes than granted causes the token exchange to fail. The full API surface is publicly documented at https://github.com/TrainingPeaks/PartnersAPI/wiki, from which this specification was authored.\n\nENDPOINT PROVENANCE: All paths, HTTP methods, and OAuth scopes in this document are CONFIRMED against the public PartnersAPI wiki API-Endpoints page. Request and response SCHEMAS are MODELED from the wiki object pages and examples, because the live reference responses require partner credentials and an authorized user; treat the property lists as representative rather than exhaustive (marked with x-endpoints-modeled below).\n\nContact Support:\n Name: TrainingPeaks API Partnerships Team",
+      "type": "text/plain"
+    }
+  }
+}

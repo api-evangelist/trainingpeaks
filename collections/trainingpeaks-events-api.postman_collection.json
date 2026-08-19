@@ -1,0 +1,524 @@
+{
+  "item": [
+    {
+      "id": "0157bddc-9299-44d4-b6c8-f6b1f7db8882",
+      "name": "Events",
+      "description": {
+        "content": "Athlete events.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2b32d5ec-3df1-4700-8033-518ef37db571",
+          "name": "Get next event",
+          "request": {
+            "name": "Get next event",
+            "description": {
+              "content": "Retrieve the athlete's next upcoming event. Scope events:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "events",
+                "next"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2b3f3439-9cfb-4b55-acf7-fae103e1e8ba",
+              "name": "The next event.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "events",
+                    "next"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": 7287,\n  \"AthleteId\": 9132,\n  \"Name\": \"string\",\n  \"Date\": \"1968-03-17\",\n  \"Priority\": \"string\",\n  \"Type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "556cc525-11e2-4fb6-a9e1-4623b3b44dea",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "events",
+                    "next"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c3cdbf5-c230-49ab-8474-9111d44be2c0",
+          "name": "Get events by date",
+          "request": {
+            "name": "Get events by date",
+            "description": {
+              "content": "Retrieve the athlete's events for a date. Scope events:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "events",
+                ":date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "date",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a2fd97e-e637-43aa-ade8-55b6de86b071",
+              "name": "Events on the date.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "events",
+                    ":date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Id\": 6105,\n    \"AthleteId\": 8602,\n    \"Name\": \"string\",\n    \"Date\": \"1950-08-23\",\n    \"Priority\": \"string\",\n    \"Type\": \"string\"\n  },\n  {\n    \"Id\": 7884,\n    \"AthleteId\": 7365,\n    \"Name\": \"string\",\n    \"Date\": \"1988-03-15\",\n    \"Priority\": \"string\",\n    \"Type\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c24b59bf-850e-478b-9b2c-0beaec9de0ad",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "events",
+                    ":date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "261486cb-bb0c-41df-9e26-67e2799e7dd9",
+          "name": "Create event",
+          "request": {
+            "name": "Create event",
+            "description": {
+              "content": "Create a new event for the athlete. Scope events:write.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Name\": \"<string>\",\n  \"Date\": \"<date>\",\n  \"Priority\": \"<string>\",\n  \"Type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "546e480b-a5a9-47d3-9e1e-7401631b489f",
+              "name": "The created event.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Name\": \"<string>\",\n  \"Date\": \"<date>\",\n  \"Priority\": \"<string>\",\n  \"Type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Name\": \"<string>\",\n  \"Date\": \"<date>\",\n  \"Priority\": \"<string>\",\n  \"Type\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91697e40-bdde-4400-8952-0efbbbbfc9bf",
+              "name": "One or more required fields are missing or incorrect.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Name\": \"<string>\",\n  \"Date\": \"<date>\",\n  \"Priority\": \"<string>\",\n  \"Type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "694b3e38-a8b2-4d88-b1e0-cca13f3b4f68",
+              "name": "Bad, expired, or missing authorization header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Id\": \"<long>\",\n  \"AthleteId\": \"<long>\",\n  \"Name\": \"<string>\",\n  \"Date\": \"<date>\",\n  \"Priority\": \"<string>\",\n  \"Type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trainingpeaks.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "athlete:profile coach:athletes workouts:read workouts:plan workouts:wod workouts:details metrics:read metrics:write nutrition:read nutrition:write events:read events:write routes:read routes:write file:write webhook:read-subscriptions webhook:write-subscriptions"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://oauth.trainingpeaks.com/oauth/token"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://oauth.trainingpeaks.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://oauth.trainingpeaks.com/OAuth/Authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "39897e70-7681-4339-9096-bddd62005fe8",
+    "name": "TrainingPeaks Partners Athlete Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The TrainingPeaks Partners API (Public API) lets approved third-party applications read and write TrainingPeaks data on behalf of a user - athlete profiles, planned and completed workouts, structured workout files, wellness metrics, nutrition, events, routes, coach relationships, activity file uploads, and workout webhooks. It is a JSON over HTTPS REST API secured with OAuth 2.0 (authorization_code and refresh_token grants).\n\nACCESS MODEL: Access is partner-gated. Applications must request credentials at https://api.trainingpeaks.com/request-access and are individually evaluated; TrainingPeaks states it is not accepting API requests for personal use. Each application is granted a fixed set of OAuth scopes; requesting more scopes than granted causes the token exchange to fail. The full API surface is publicly documented at https://github.com/TrainingPeaks/PartnersAPI/wiki, from which this specification was authored.\n\nENDPOINT PROVENANCE: All paths, HTTP methods, and OAuth scopes in this document are CONFIRMED against the public PartnersAPI wiki API-Endpoints page. Request and response SCHEMAS are MODELED from the wiki object pages and examples, because the live reference responses require partner credentials and an authorized user; treat the property lists as representative rather than exhaustive (marked with x-endpoints-modeled below).\n\nContact Support:\n Name: TrainingPeaks API Partnerships Team",
+      "type": "text/plain"
+    }
+  }
+}

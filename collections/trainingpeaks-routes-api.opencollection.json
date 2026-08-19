@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TrainingPeaks Partners Athlete Routes API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://oauth.trainingpeaks.com/OAuth/Authorize",
+      "accessTokenUrl": "https://oauth.trainingpeaks.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Routes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get athlete routes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/athletes/:athleteId/routes",
+            "params": [
+              {
+                "name": "athleteId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve an athlete's GPS routes. Scope routes:read."
+        },
+        {
+          "info": {
+            "name": "Create athlete route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainingpeaks.com/v2/athlete/:athleteId/routes",
+            "params": [
+              {
+                "name": "athleteId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a GPS route for an athlete. Scope routes:write."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

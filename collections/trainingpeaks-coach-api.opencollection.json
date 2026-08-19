@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TrainingPeaks Partners Athlete Coach API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://oauth.trainingpeaks.com/OAuth/Authorize",
+      "accessTokenUrl": "https://oauth.trainingpeaks.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Coach",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get coach profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v1/coach/profile"
+          },
+          "docs": "Retrieve the authenticated coach's profile. Scope coach:athletes."
+        },
+        {
+          "info": {
+            "name": "List coach athletes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v1/coach/athletes"
+          },
+          "docs": "List the athletes attached to the authenticated coach. Scope coach:athletes."
+        },
+        {
+          "info": {
+            "name": "Get coach athletes zones (deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v1/coach/athletes/zones"
+          },
+          "docs": "Deprecated. Zones for the coach's athletes. Scope coach:athletes."
+        },
+        {
+          "info": {
+            "name": "Get coach athletes zones by type (deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v1/coach/athletes/zones/:zoneType",
+            "params": [
+              {
+                "name": "zoneType",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deprecated. Zones by type for the coach's athletes. Scope coach:athletes."
+        },
+        {
+          "info": {
+            "name": "List assistants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v1/coach/assistants"
+          },
+          "docs": "List assistant coaches for the authenticated coach. Scope coach:athletes."
+        },
+        {
+          "info": {
+            "name": "Get assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v1/coach/assistants/:assistantId",
+            "params": [
+              {
+                "name": "assistantId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a single assistant coach. Scope coach:athletes."
+        },
+        {
+          "info": {
+            "name": "List assistant athletes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v1/coach/assistants/:assistantId/athletes",
+            "params": [
+              {
+                "name": "assistantId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List the athletes attached to an assistant coach. Scope coach:athletes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

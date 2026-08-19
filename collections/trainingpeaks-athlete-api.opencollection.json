@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TrainingPeaks Partners Athlete API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://oauth.trainingpeaks.com/OAuth/Authorize",
+      "accessTokenUrl": "https://oauth.trainingpeaks.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Athlete",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get athlete profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v1/athlete/profile"
+          },
+          "docs": "Retrieve the authenticated athlete's profile. Scope athlete:profile."
+        },
+        {
+          "info": {
+            "name": "Get athlete zones (deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v1/athlete/zones"
+          },
+          "docs": "Deprecated. Retrieve the athlete's training zones. Scope athlete:profile."
+        },
+        {
+          "info": {
+            "name": "Get athlete zones by type (deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v1/athlete/zones/:zoneType",
+            "params": [
+              {
+                "name": "zoneType",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deprecated. Retrieve the athlete's zones for a given zone type. Scope athlete:profile."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

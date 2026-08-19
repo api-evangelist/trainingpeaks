@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TrainingPeaks Partners Athlete Metrics API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://oauth.trainingpeaks.com/OAuth/Authorize",
+      "accessTokenUrl": "https://oauth.trainingpeaks.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get metric by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/metrics/:metricId",
+            "params": [
+              {
+                "name": "metricId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a single metric entry by id. Scope metrics:read."
+        },
+        {
+          "info": {
+            "name": "Get metrics by date range",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/metrics/:startDate/:endDate",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the authenticated athlete's metrics for a date range. Premium athlete required (403 for basic). Scope metrics:read."
+        },
+        {
+          "info": {
+            "name": "Get athlete metrics by date range",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v2/metrics/:athleteId/:startDate/:endDate",
+            "params": [
+              {
+                "name": "athleteId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Coach access to an athlete's metrics for a date range. Premium athlete required (403 for basic). Scope metrics:read."
+        },
+        {
+          "info": {
+            "name": "Create metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainingpeaks.com/v2/metrics",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new athlete metric entry. Scope metrics:write."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

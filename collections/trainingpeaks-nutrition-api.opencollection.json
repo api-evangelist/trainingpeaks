@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TrainingPeaks Partners Athlete Nutrition API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://oauth.trainingpeaks.com/OAuth/Authorize",
+      "accessTokenUrl": "https://oauth.trainingpeaks.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Nutrition",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get athlete nutrition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trainingpeaks.com/v1/athletes/:athleteId/nutrition",
+            "params": [
+              {
+                "name": "athleteId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve an athlete's nutrition log entries. Date-range reads require a premium athlete (403 for basic). Scope nutrition:read."
+        },
+        {
+          "info": {
+            "name": "Create athlete nutrition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainingpeaks.com/v1/athletes/:athleteId/nutrition",
+            "params": [
+              {
+                "name": "athleteId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a nutrition log entry for an athlete. Scope nutrition:write."
+        },
+        {
+          "info": {
+            "name": "Update athlete nutrition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.trainingpeaks.com/v1/athletes/:athleteId/nutrition/:nutritionId",
+            "params": [
+              {
+                "name": "athleteId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "nutritionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a nutrition log entry. Scope nutrition:write."
+        },
+        {
+          "info": {
+            "name": "Delete athlete nutrition",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.trainingpeaks.com/v1/athletes/:athleteId/nutrition/:nutritionId",
+            "params": [
+              {
+                "name": "athleteId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "nutritionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a nutrition log entry. Scope nutrition:write."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
