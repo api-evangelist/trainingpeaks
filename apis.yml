@@ -155,6 +155,8 @@ apis:
   humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
   baseURL: https://api.trainingpeaks.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -485,6 +487,8 @@ apis:
   humanURL: https://github.com/TrainingPeaks/PartnersAPI/wiki/Athlete-Get-Profile
   baseURL: https://api.trainingpeaks.com
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
