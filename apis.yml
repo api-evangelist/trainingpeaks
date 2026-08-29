@@ -13,6 +13,18 @@ description: TrainingPeaks is an endurance-athlete training platform for cyclist
   behalf of a user. API access is partner-gated - developers must apply for
   credentials and are not accepting requests for personal use - but the API surface
   is publicly documented on the PartnersAPI GitHub wiki.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: approval
