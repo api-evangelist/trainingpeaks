@@ -1,14 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: TrainingPeaks Partners Athlete Events API
+  title: TrainingPeaks Partners Events API
   version: '2.0'
-  description: 'The TrainingPeaks Partners API (Public API) lets approved third-party applications read and write TrainingPeaks data on behalf of a user - athlete profiles, planned and completed workouts, structured workout files, wellness metrics, nutrition, events, routes, coach relationships, activity file uploads, and workout webhooks. It is a JSON over HTTPS REST API secured with OAuth 2.0 (authorization_code and refresh_token grants).
-
-
-    ACCESS MODEL: Access is partner-gated. Applications must request credentials at https://api.trainingpeaks.com/request-access and are individually evaluated; TrainingPeaks states it is not accepting API requests for personal use. Each application is granted a fixed set of OAuth scopes; requesting more scopes than granted causes the token exchange to fail. The full API surface is publicly documented at https://github.com/TrainingPeaks/PartnersAPI/wiki, from which this specification was authored.
-
-
-    ENDPOINT PROVENANCE: All paths, HTTP methods, and OAuth scopes in this document are CONFIRMED against the public PartnersAPI wiki API-Endpoints page. Request and response SCHEMAS are MODELED from the wiki object pages and examples, because the live reference responses require partner credentials and an authorized user; treat the property lists as representative rather than exhaustive (marked with x-endpoints-modeled below).'
+  description: The TrainingPeaks Partners API (Public API) lets approved third-party applications read and write TrainingPeaks data on behalf of a user - athlete profiles, planned and completed workouts, structured workout files, wellness metrics, nutrition, events, routes, coach relationships, activity file uploads, and workout webhooks.
   contact:
     name: TrainingPeaks API Partnerships Team
     url: https://api.trainingpeaks.com/request-access
@@ -93,6 +87,11 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Bad, expired, or missing authorization header.
+    BadRequest:
+      description: One or more required fields are missing or incorrect.
   schemas:
     Event:
       type: object
@@ -116,11 +115,6 @@ components:
           C priority race.: null
         Type:
           type: string
-  responses:
-    BadRequest:
-      description: One or more required fields are missing or incorrect.
-    Unauthorized:
-      description: Bad, expired, or missing authorization header.
   securitySchemes:
     OAuth2:
       type: oauth2
