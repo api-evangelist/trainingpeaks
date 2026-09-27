@@ -110,12 +110,29 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Bad, expired, or missing authorization header.
-    BadRequest:
-      description: One or more required fields are missing or incorrect.
   schemas:
+    WebhookSubscriptionRequest:
+      type: object
+      description: Webhook subscription request. Confirmed from Webhook-Create-Subscription wiki page.
+      required:
+      - AthleteId
+      - EventType
+      - WebhookUrl
+      properties:
+        AthleteId:
+          type: integer
+          format: int64
+          example: 54321
+        EventType:
+          type: string
+          enum:
+          - workout-created
+          - workout-updated
+          - workout-deleted
+        WebhookUrl:
+          type: string
+          format: uri
+          description: URL that receives an HTTP POST on a matching event.
     WebhookSubscription:
       type: object
       description: Webhook subscription. Confirmed from Webhook-Create-Subscription wiki page.
@@ -143,28 +160,11 @@ components:
         CreatedOn:
           type: string
           format: date-time
-    WebhookSubscriptionRequest:
-      type: object
-      description: Webhook subscription request. Confirmed from Webhook-Create-Subscription wiki page.
-      required:
-      - AthleteId
-      - EventType
-      - WebhookUrl
-      properties:
-        AthleteId:
-          type: integer
-          format: int64
-          example: 54321
-        EventType:
-          type: string
-          enum:
-          - workout-created
-          - workout-updated
-          - workout-deleted
-        WebhookUrl:
-          type: string
-          format: uri
-          description: URL that receives an HTTP POST on a matching event.
+  responses:
+    Unauthorized:
+      description: Bad, expired, or missing authorization header.
+    BadRequest:
+      description: One or more required fields are missing or incorrect.
   securitySchemes:
     OAuth2:
       type: oauth2
