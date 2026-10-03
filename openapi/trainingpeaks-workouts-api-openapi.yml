@@ -577,42 +577,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Forbidden:
-      description: Refused - e.g. accessing an athlete no longer attached to the coach, or premium data for a basic athlete.
-    Unauthorized:
-      description: Bad, expired, or missing authorization header.
-    BadRequest:
-      description: One or more required fields are missing or incorrect.
   schemas:
-    StrengthWorkout:
-      type: object
-      description: Strength workout. Modeled from Strength-Workouts-Object wiki page.
-      properties:
-        Id:
-          type: integer
-          format: int64
-        AthleteId:
-          type: integer
-          format: int64
-        WorkoutDay:
-          type: string
-          format: date-time
-        Title:
-          type: string
-        Exercises:
-          type: array
-          items:
-            type: object
-            properties:
-              Name:
-                type: string
-              Sets:
-                type: integer
-              Reps:
-                type: integer
-              Load:
-                type: number
     Workout:
       type: object
       description: Planned and/or completed workout. Modeled from the Workouts-Object wiki page; premium-only fields (Calories, TssActual, IF, NormalizedPower, etc.) return null for basic athletes.
@@ -676,6 +641,41 @@ components:
         Calories:
           type: number
           description: Premium only.
+    StrengthWorkout:
+      type: object
+      description: Strength workout. Modeled from Strength-Workouts-Object wiki page.
+      properties:
+        Id:
+          type: integer
+          format: int64
+        AthleteId:
+          type: integer
+          format: int64
+        WorkoutDay:
+          type: string
+          format: date-time
+        Title:
+          type: string
+        Exercises:
+          type: array
+          items:
+            type: object
+            properties:
+              Name:
+                type: string
+              Sets:
+                type: integer
+              Reps:
+                type: integer
+              Load:
+                type: number
+  responses:
+    Forbidden:
+      description: Refused - e.g. accessing an athlete no longer attached to the coach, or premium data for a basic athlete.
+    BadRequest:
+      description: One or more required fields are missing or incorrect.
+    Unauthorized:
+      description: Bad, expired, or missing authorization header.
   securitySchemes:
     OAuth2:
       type: oauth2

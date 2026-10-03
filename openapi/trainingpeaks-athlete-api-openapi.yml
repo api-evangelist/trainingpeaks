@@ -90,22 +90,6 @@ components:
     Unauthorized:
       description: Bad, expired, or missing authorization header.
   schemas:
-    Zone:
-      type: object
-      description: Training zone (heart rate, power, or speed). Modeled - deprecated endpoints.
-      properties:
-        ZoneType:
-          type: string
-          enum:
-          - heartrate
-          - power
-          - speed
-        Minimum:
-          type: number
-        Maximum:
-          type: number
-        Label:
-          type: string
     AthleteProfile:
       type: object
       description: Athlete profile. Modeled - property set is representative.
@@ -130,6 +114,22 @@ components:
         Units:
           type: string
           description: english or metric.
+    Zone:
+      type: object
+      description: Training zone (heart rate, power, or speed). Modeled - deprecated endpoints.
+      properties:
+        ZoneType:
+          type: string
+          enum:
+          - heartrate
+          - power
+          - speed
+        Minimum:
+          type: number
+        Maximum:
+          type: number
+        Label:
+          type: string
   securitySchemes:
     OAuth2:
       type: oauth2
