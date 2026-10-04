@@ -148,10 +148,22 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Bad, expired, or missing authorization header.
   schemas:
+    CoachProfile:
+      type: object
+      description: Coach profile. Modeled.
+      properties:
+        Id:
+          type: integer
+          format: int64
+        FirstName:
+          type: string
+        LastName:
+          type: string
+        Email:
+          type: string
+        CoachType:
+          type: string
     AthleteProfile:
       type: object
       description: Athlete profile. Modeled - property set is representative.
@@ -176,21 +188,9 @@ components:
         Units:
           type: string
           description: english or metric.
-    CoachProfile:
-      type: object
-      description: Coach profile. Modeled.
-      properties:
-        Id:
-          type: integer
-          format: int64
-        FirstName:
-          type: string
-        LastName:
-          type: string
-        Email:
-          type: string
-        CoachType:
-          type: string
+  responses:
+    Unauthorized:
+      description: Bad, expired, or missing authorization header.
   securitySchemes:
     OAuth2:
       type: oauth2

@@ -110,6 +110,11 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    BadRequest:
+      description: One or more required fields are missing or incorrect.
+    Unauthorized:
+      description: Bad, expired, or missing authorization header.
   schemas:
     WebhookSubscriptionRequest:
       type: object
@@ -160,11 +165,6 @@ components:
         CreatedOn:
           type: string
           format: date-time
-  responses:
-    Unauthorized:
-      description: Bad, expired, or missing authorization header.
-    BadRequest:
-      description: One or more required fields are missing or incorrect.
   securitySchemes:
     OAuth2:
       type: oauth2

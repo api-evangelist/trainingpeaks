@@ -158,6 +158,13 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Forbidden:
+      description: Refused - e.g. accessing an athlete no longer attached to the coach, or premium data for a basic athlete.
+    BadRequest:
+      description: One or more required fields are missing or incorrect.
+    Unauthorized:
+      description: Bad, expired, or missing authorization header.
   schemas:
     Nutrition:
       type: object
@@ -179,13 +186,6 @@ components:
           type: number
         FatInGrams:
           type: number
-  responses:
-    Unauthorized:
-      description: Bad, expired, or missing authorization header.
-    BadRequest:
-      description: One or more required fields are missing or incorrect.
-    Forbidden:
-      description: Refused - e.g. accessing an athlete no longer attached to the coach, or premium data for a basic athlete.
   securitySchemes:
     OAuth2:
       type: oauth2

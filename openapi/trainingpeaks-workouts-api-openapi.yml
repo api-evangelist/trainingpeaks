@@ -577,6 +577,13 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Forbidden:
+      description: Refused - e.g. accessing an athlete no longer attached to the coach, or premium data for a basic athlete.
+    Unauthorized:
+      description: Bad, expired, or missing authorization header.
+    BadRequest:
+      description: One or more required fields are missing or incorrect.
   schemas:
     Workout:
       type: object
@@ -669,13 +676,6 @@ components:
                 type: integer
               Load:
                 type: number
-  responses:
-    Forbidden:
-      description: Refused - e.g. accessing an athlete no longer attached to the coach, or premium data for a basic athlete.
-    BadRequest:
-      description: One or more required fields are missing or incorrect.
-    Unauthorized:
-      description: Bad, expired, or missing authorization header.
   securitySchemes:
     OAuth2:
       type: oauth2
