@@ -606,6 +606,9 @@ apis:
   - type: APIReference
     url: https://github.com/TrainingPeaks/PartnersAPI/wiki/Webhook-Get-Subscriptions
 common:
+- type: CapabilityMap
+  url: capabilities/trainingpeaks-capability-edges.yml
+  name: TrainingPeaks Business Capability Map
 - type: AgenticAccess
   url: agentic-access/trainingpeaks-agentic-access.yml
 - type: DomainSecurity
