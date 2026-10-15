@@ -1,0 +1,54 @@
+edges:
+- partner_name: Terra
+  partner: terra-api
+  partner_match: aggregator
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations
+  category: health data source
+  contract_reference:
+    list: Terra supported integrations (docs.tryterra.co)
+    spec_file: null
+    listed_name: TrainingPeaks
+    listed_id: TRAININGPEAKS
+    listed_names:
+    - TrainingPeaks
+    matched_domain: trainingpeaks.com
+    matched_by: domain
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    identity: wikidata Q140668002 'TrainingPeaks' P856 https://app.trainingpeaks.com/
+    identity_source: wikidata P856 (labelled provenance step, Kin 2026-10-15 decision 1)
+    delivery_mode:
+    - Event-Driven
+    developer_access:
+    - Managed
+  detected_by: sweep-health-wellness.py
+  first_seen: '2026-10-15'
+- partner_name: Polar (own)
+  partner: polar
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.polar.com/en/compatible-apps
+  mirror_of: polar/integrations/polar-integration-edges.yml
+  apps:
+  - TrainingPeaks
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: Polar AccessLink compatible app
+generated: '2026-10-15'
+method: searched
+source:
+- https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations
+checked:
+- https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations
+- polar/integrations/polar-integration-edges.yml
