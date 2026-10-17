@@ -87,6 +87,11 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    BadRequest:
+      description: One or more required fields are missing or incorrect.
+    Unauthorized:
+      description: Bad, expired, or missing authorization header.
   schemas:
     Event:
       type: object
@@ -110,11 +115,6 @@ components:
           C priority race.: null
         Type:
           type: string
-  responses:
-    BadRequest:
-      description: One or more required fields are missing or incorrect.
-    Unauthorized:
-      description: Bad, expired, or missing authorization header.
   securitySchemes:
     OAuth2:
       type: oauth2

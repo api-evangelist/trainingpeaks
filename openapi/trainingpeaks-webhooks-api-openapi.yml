@@ -111,10 +111,10 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   responses:
-    BadRequest:
-      description: One or more required fields are missing or incorrect.
     Unauthorized:
       description: Bad, expired, or missing authorization header.
+    BadRequest:
+      description: One or more required fields are missing or incorrect.
   schemas:
     WebhookSubscriptionRequest:
       type: object
